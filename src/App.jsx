@@ -2,6 +2,7 @@
 import './App.css'
 import { CompanyCard } from './components/cards/emprestimo';
 import { CompanyProfileCard } from './components/cards/ofertas';
+import { Footer } from './components/navBar';
 import { CreateOfferForm } from './components/ofertas/ofertas';
 
 
@@ -26,9 +27,11 @@ const companyData2 = {
   return (
     <>
     <div className="p-4">
+            
             <CompanyCard company={companyData} />
             <CompanyProfileCard company={companyData2} />
             <CreateOfferForm />
+            <Footer/>
         </div>
     </>
   )
