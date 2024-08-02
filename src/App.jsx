@@ -1,6 +1,8 @@
 
 import './App.css'
 import { CompanyCard } from './components/cards/emprestimo';
+import { CompanyProfileCard } from './components/cards/ofertas';
+
 
 
 function App() {
@@ -14,10 +16,17 @@ function App() {
     juris: "São Paulo"
 };
 
+const companyData2 = {
+  foto: 'https://via.placeholder.com/64', 
+  nomeEmpresa: 'Empresa Exemplo Ltda.',
+  descricao: 'Uma breve descrição da empresa. Fornecemos soluções inovadoras e serviços de alta qualidade.'
+};
+
   return (
     <>
     <div className="p-4">
             <CompanyCard company={companyData} />
+            <CompanyProfileCard company={companyData2} />
         </div>
     </>
   )
