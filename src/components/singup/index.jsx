@@ -121,7 +121,7 @@ export const Signup = () => {
                             <button
                                 type="button"
                                 onClick={() => setStep(2)}
-                                className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                                className="w-full py-2 px-4 bg-orange-700 text-blue font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
                             >
                                 Próximo
                             </button>
@@ -192,7 +192,7 @@ export const Signup = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full py-2 px-4 bg-blue-600 text-white font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                                className="w-full py-2 px-4 bg-blue text-rose-400 font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
                             >
                                 Cadastrar
                             </button>
