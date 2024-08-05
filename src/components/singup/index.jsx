@@ -44,7 +44,7 @@ export const Signup = () => {
 
     const dataToSend = {
         ...formData,
-        data: formattedDate.toISOString(), // Convertendo para formato ISO
+        data: formattedDate.toISOString(), 
     };
 
         
@@ -60,7 +60,7 @@ export const Signup = () => {
             console.log('Resposta da API:', response.data);
 
             
-            //window.location.href = '/login'; 
+            window.location.href = '/login'; 
         } catch (err) {
             
             console.error('Erro no cadastro:', err.response?.data?.message || err.message);
