@@ -1,5 +1,6 @@
 import React from 'react';
 import { MagnifyingGlassIcon, MicrophoneIcon, Cog6ToothIcon, BellIcon } from '@heroicons/react/24/solid'; 
+import { Link } from 'react-router-dom';
 
 export const SearchComponent = () => {
     return (
@@ -19,9 +20,9 @@ export const SearchComponent = () => {
                 </div>
             </div>
             <div className="flex space-x-4">
-                <button className="p-2 text-gray-600 hover:text-gray-800">
+                <Link to='/configuracoes' className="p-2 text-gray-600 hover:text-gray-800">
                     <Cog6ToothIcon className="w-6 h-6" aria-hidden="true" />
-                </button>
+                </Link>
                 <button className="p-2 text-gray-600 hover:text-gray-800">
                     <BellIcon className="w-6 h-6" aria-hidden="true" />
                 </button>
