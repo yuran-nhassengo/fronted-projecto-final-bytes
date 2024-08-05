@@ -1,16 +1,36 @@
+import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 
 
 export const Login = () => {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const [error, setError] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('E-mail:', email);
-        console.log('Senha:', senha);
-    };
+        setError(''); 
+    
+        try {
+          const response = await axios.post('http://192.168.0.233:8000/api/devedor/login', {
+            email,
+            senha
+          });
+    
+          console.log('Resposta da API:', response.data);
+          
+          localStorage.setItem('token', response.data.token);
+          console.log('Login bem-sucedido:', response.data);
+    
+          
+          window.location.href = '/emprestimo'; 
+        } catch (err) {
+          console.error('Falha no login:', err.response?.data?.message || err.message);
+          setError('Nome de usuário ou senha inválidos');
+        }
+      };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
@@ -48,7 +68,7 @@ export const Login = () => {
                 </form>
                 <div className="mt-4 flex justify-between text-sm text-gray-600">
                     <p to="#" className="hover:underline">Esqueceu a sua senha?</p>
-                    <p to="#" className="hover:underline">Cadastre-se</p>
+                    <Link to="/signup" className="hover:underline">Cadastre-se</Link>
                 </div>
             </div>
         </div>

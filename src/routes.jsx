@@ -6,6 +6,7 @@ import {Emprestimo} from '../src/pages/emprestimo'
 import {ErrorPage} from '../src/pages/error-page'
 import { ConfiguracoesPage} from '../src/pages/configuracoes'
 import {Empresas} from '../src/pages/empresas'
+import { SignupPage } from "./pages/signup-page";
 
 export const route = createBrowserRouter([
 
@@ -29,6 +30,10 @@ export const route = createBrowserRouter([
     {
         path:"/empresas",
         element:<Empresas/>,
+    },
+    {
+        path:"/signup",
+        element:<SignupPage/>,
     },
 ])
 
