@@ -14,7 +14,7 @@ export const Login = () => {
         setError(''); 
     
         try {
-          const response = await axios.post('http://192.168.0.233:8000/api/devedor/login', {
+          const response = await axios.post('http://192.168.22.233:8000/api/devedor/login', {
             email,
             senha
           });
@@ -25,7 +25,7 @@ export const Login = () => {
           console.log('Login bem-sucedido:', response.data);
     
           
-          window.location.href = '/emprestimo'; 
+          window.location.href = '/'; 
         } catch (err) {
           console.error('Falha no login:', err.response?.data?.message || err.message);
           setError('Nome de usuário ou senha inválidos');
@@ -61,7 +61,7 @@ export const Login = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full py-2 px-4 bg-blue-600 text-blue font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                        className="w-full py-2 px-4 bg-blue-600 text-blue font-bold rounded-md hover:bg-orange-400 transition duration-150 ease-in-out"
                     >
                         Login
                     </button>

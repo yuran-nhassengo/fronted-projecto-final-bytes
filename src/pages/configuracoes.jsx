@@ -11,7 +11,7 @@ export const ConfiguracoesPage = () => {
     <HeaderNav title={'Configuracoes'}/>
     <main className="pt-16 mt-8 pb-16">
         <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-           Configuracoes
+           <Configuracoes/>
         </div>
     </main>
     <Footer />

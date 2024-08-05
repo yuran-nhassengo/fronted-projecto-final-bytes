@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 export const SearchComponent = () => {
     return (
         <div className="fixed top-0 left-0 w-full p-4 bg-gray-100 shadow-md z-50 flex items-center justify-between">
-       
             <div className="relative flex-1">
                 <input
                     type="text"
@@ -23,9 +22,9 @@ export const SearchComponent = () => {
                 <Link to='/configuracoes' className="p-2 text-gray-600 hover:text-gray-800">
                     <Cog6ToothIcon className="w-6 h-6" aria-hidden="true" />
                 </Link>
-                <button className="p-2 text-gray-600 hover:text-gray-800">
+                <Link to='/notificacoes' className="p-2 text-gray-600 hover:text-gray-800">
                     <BellIcon className="w-6 h-6" aria-hidden="true" />
-                </button>
+                </Link>
             </div>
         </div>
     );

@@ -8,6 +8,8 @@ import { ConfiguracoesPage} from '../src/pages/configuracoes'
 import {Empresas} from '../src/pages/empresas'
 import { SignupPage } from "./pages/signup-page";
 import { Login } from "./components/login";
+import { ProtectedRoute } from "./components/protect-route";
+import { Configuracoes } from "./components/configuracoes";
 
 export const route = createBrowserRouter([
 
@@ -26,7 +28,11 @@ export const route = createBrowserRouter([
     },
     {
         path:"/configuracoes",
-        element:<ConfiguracoesPage/>,
+        element: (
+            <ProtectedRoute>
+                <Configuracoes />
+            </ProtectedRoute>
+        ),
     },
     {
         path:"/empresas",
