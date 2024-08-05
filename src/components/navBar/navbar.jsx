@@ -7,6 +7,12 @@ export const Navbar = () => {
             <div className="container mx-auto flex justify-between items-center">
                 <div className="flex items-center space-x-4">
                     <Link 
+                        to="/" 
+                        className="text-white hover:text-red px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                        Home
+                    </Link>
+                    <Link 
                         to="/emprestimo" 
                         className="text-white hover:text-red px-3 py-2 rounded-md text-sm font-medium"
                     >

@@ -1,13 +1,11 @@
 import React from 'react';
 
 export const CompanyProfileCard = ({ company }) => {
-   
     const { foto, nomeEmpresa, descricao } = company;
 
     return (
         <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
             <div className="flex items-center p-4">
-             
                 <img
                     src={foto}
                     alt={`${nomeEmpresa} logo`}
