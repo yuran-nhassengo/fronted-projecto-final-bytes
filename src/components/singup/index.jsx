@@ -1,23 +1,24 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 
 export const Signup = () => {
-   
-    const [step, setStep] = useState(1); 
+    const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
-        nome: '',
+        name: '',
         bi: '',
-        dataNascimento: '',
+        data: '',
         genero: '',
         profissao: '',
         contacto: '',
         email: '',
         endereco: '',
         senha: '',
-        confirmarSenha: '',
+        confirmSenha: '', 
         aceitarTermos: false,
     });
+    const [error, setError] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
-   
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setFormData({
@@ -26,19 +27,51 @@ export const Signup = () => {
         });
     };
 
-  
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-      
-        console.log("Dados do formulário:", formData);
+
+        
+        if (formData.senha !== formData.confirmSenha) {
+            setError('As senhas não coincidem.');
+            return;
+        }
+
+        const formattedDate = new Date(formData.dataNascimento);
+    if (isNaN(formattedDate.getTime())) {
+        setError('Data inválida.');
+        return;
+    }
+
+    const dataToSend = {
+        ...formData,
+        data: formattedDate.toISOString(), // Convertendo para formato ISO
+    };
+
+        
+        setError('');
+        setSuccessMessage('');
+
+        try {
+            
+            const response = await axios.post('http://192.168.0.233:8000/api/devedor/signup', dataToSend);
+
+            
+            setSuccessMessage('Cadastro realizado com sucesso!');
+            console.log('Resposta da API:', response.data);
+
+            
+            //window.location.href = '/login'; 
+        } catch (err) {
+            
+            console.error('Erro no cadastro:', err.response?.data?.message || err.message);
+            setError('Ocorreu um erro ao cadastrar. Por favor, tente novamente.');
+        }
     };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
             <div className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
-                <h1 className="text-2xl font-bold mb-6 text-center text-gray-900">
-                    Cadastro
-                </h1>
+                <h1 className="text-2xl font-bold mb-6 text-center text-gray-900">Cadastro</h1>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {step === 1 && (
                         <>
@@ -46,9 +79,9 @@ export const Signup = () => {
                                 <label htmlFor="nome" className="block text-gray-700 text-sm font-medium mb-1">Nome</label>
                                 <input
                                     type="text"
-                                    id="nome"
-                                    name="nome"
-                                    value={formData.nome}
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
                                     onChange={handleChange}
                                     required
                                     className="w-full p-2 border border-gray-300 rounded-md"
@@ -121,7 +154,7 @@ export const Signup = () => {
                             <button
                                 type="button"
                                 onClick={() => setStep(2)}
-                                className="w-full py-2 px-4 bg-orange-700 text-blue font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                                className="w-full py-2 px-4 bg-orange-700 text-white font-bold rounded-md hover:bg-orange-800 transition duration-150 ease-in-out"
                             >
                                 Próximo
                             </button>
@@ -167,12 +200,12 @@ export const Signup = () => {
                                 />
                             </div>
                             <div>
-                                <label htmlFor="confirmarSenha" className="block text-gray-700 text-sm font-medium mb-1">Confirmar Senha</label>
+                                <label htmlFor="confirmSenha" className="block text-gray-700 text-sm font-medium mb-1">Confirmar Senha</label>
                                 <input
                                     type="password"
-                                    id="confirmarSenha"
-                                    name="confirmarSenha"
-                                    value={formData.confirmarSenha}
+                                    id="confirmSenha"
+                                    name="confirmSenha"
+                                    value={formData.confirmSenha}
                                     onChange={handleChange}
                                     required
                                     className="w-full p-2 border border-gray-300 rounded-md"
@@ -192,11 +225,19 @@ export const Signup = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full py-2 px-4 bg-blue text-rose-400 font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                                className="w-full py-2 px-4 bg-blue text-white font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
                             >
                                 Cadastrar
                             </button>
                         </>
+                    )}
+
+                    {error && (
+                        <div className="mt-4 text-red-600">{error}</div>
+                    )}
+
+                    {successMessage && (
+                        <div className="mt-4 text-green-600">{successMessage}</div>
                     )}
                 </form>
             </div>
