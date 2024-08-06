@@ -21,11 +21,17 @@ export const route = createBrowserRouter([
     },
     {
         path:"/disputa",
-        element:<Disputa/>,
+        element:(
+            <ProtectedRoute>
+                <Disputa/>
+            </ProtectedRoute>),
     },
     {
         path:"/emprestimo",
-        element:<Emprestimo/>,
+        element:(
+            <ProtectedRoute>
+                 <Emprestimo/>
+            </ProtectedRoute>)
     },
     {
         path:"/configuracoes",
