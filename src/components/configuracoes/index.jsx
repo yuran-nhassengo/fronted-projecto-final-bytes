@@ -11,6 +11,7 @@ export const Configuracoes = () => {
         nascimento: '',
         endereco: '',
         email: '',
+        id:"",
         senha: ''
     });
 
@@ -43,7 +44,8 @@ export const Configuracoes = () => {
                     nascimento: user.data.data || '',
                     endereco: user.data.endereco || '',
                     email: user.data.email || '',
-                    senha: '' // Geralmente não exibimos a senha por razões de segurança
+                    id:user.data._id || '',
+                    senha: '' 
                 });
             } catch (error) {
                 console.error('Erro ao buscar dados do usuário', error);
@@ -72,7 +74,7 @@ export const Configuracoes = () => {
 
     return (
         <div className="container mx-auto p-4 sm:p-6">
-             <HeaderNav title={'Configurações'} currentUserName={formData.nome} />
+             <HeaderNav title={'Configurações'} currentUserName={formData.nome} currentUserId={formData.id} />
             <div className="flex flex-col items-center">
                 <div className="mb-6 text-center">
                     <img 

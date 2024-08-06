@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios'; 
 
-export const SignupCredor = () => {
+export const SignupCredor = ({ userId }) => {
   const [profilePic, setProfilePic] = useState(null);
   const [formData, setFormData] = useState({
     nome: '',
@@ -30,17 +31,34 @@ export const SignupCredor = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement form submission logic here
-    console.log('Form data submitted:', formData);
+
+    if (formData.senha !== formData.confirmSenha) {
+      alert("As senhas não coincidem.");
+      return;
+    }
+
+    try {
+      
+      const response = await axios.post('http://192.168.1.58:8000/api/credor/signup', {
+        ...formData,
+        devedorId: userId,
+      });
+      
+      alert("Conta criada com sucesso!");
+     
+    } catch (error) {
+      console.error("Erro ao criar conta:", error.response?.data?.message || error.message);
+      alert("Erro ao criar conta.");
+    }
   };
 
   return (
     <div className="container mx-auto p-6 sm:p-8 md:p-10 lg:p-12 max-w-md bg-white shadow-md rounded-lg">
       <h1 className="text-2xl font-semibold mb-6 text-center">Criar Conta de Credor</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Profile Picture */}
+        
         <div className="flex flex-col items-center mb-6">
           <img
             src={profilePic || 'https://via.placeholder.com/150'}
@@ -55,7 +73,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Nome */}
         <div>
           <label htmlFor="nome" className="block text-sm font-medium text-gray-700">Nome</label>
           <input
@@ -70,7 +87,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* NUIT */}
         <div>
           <label htmlFor="nuit" className="block text-sm font-medium text-gray-700">NUIT</label>
           <input
@@ -85,7 +101,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Data de Nascimento */}
         <div>
           <label htmlFor="dataNascimento" className="block text-sm font-medium text-gray-700">Data de Nascimento</label>
           <input
@@ -99,7 +114,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Endereço */}
         <div>
           <label htmlFor="endereco" className="block text-sm font-medium text-gray-700">Endereço</label>
           <input
@@ -114,7 +128,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Descrição */}
         <div>
           <label htmlFor="descricao" className="block text-sm font-medium text-gray-700">Descrição</label>
           <textarea
@@ -129,7 +142,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Email */}
         <div>
           <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
           <input
@@ -144,7 +156,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Senha */}
         <div>
           <label htmlFor="senha" className="block text-sm font-medium text-gray-700">Senha</label>
           <input
@@ -159,7 +170,6 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Confirmar Senha */}
         <div>
           <label htmlFor="confirmSenha" className="block text-sm font-medium text-gray-700">Confirmar Senha</label>
           <input
@@ -174,11 +184,10 @@ export const SignupCredor = () => {
           />
         </div>
 
-        {/* Botão de Envio */}
         <div className="flex justify-center mt-6">
           <button
             type="submit"
-            className="px-4 py-2 bg-blue text-white rounded-md shadow-sm hover:bg-blue focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 bg-blue text-white rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Criar Conta
           </button>
