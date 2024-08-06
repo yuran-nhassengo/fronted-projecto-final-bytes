@@ -53,7 +53,7 @@ export const Signup = () => {
 
         try {
             
-            const response = await axios.post('http://192.168.0.233:8000/api/devedor/signup', dataToSend);
+            const response = await axios.post('http://192.168.22.233:8000/api/devedor/signup', dataToSend);
 
             
             setSuccessMessage('Cadastro realizado com sucesso!');

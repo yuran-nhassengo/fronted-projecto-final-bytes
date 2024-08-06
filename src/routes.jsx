@@ -10,6 +10,7 @@ import { SignupPage } from "./pages/signup-page";
 import { Login } from "./components/login";
 import { ProtectedRoute } from "./components/protect-route";
 import { Configuracoes } from "./components/configuracoes";
+import { LoginPage } from "./pages/login-page";
 
 export const route = createBrowserRouter([
 
@@ -44,7 +45,7 @@ export const route = createBrowserRouter([
     },
     {
         path:"/login",
-        element:<Login/>,
+        element:<LoginPage/>,
     },
 ])
 

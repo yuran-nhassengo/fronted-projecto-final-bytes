@@ -2,7 +2,7 @@ import React from 'react';
 import { Login } from '../components/login';
 import { Footer } from '../components/navBar';
 
-export const Home = () => {
+export const LoginPage = () => {
     return (
         <div className="relative min-h-screen bg-gray-100">
             <main className="pt-16 mt-8 pb-16">
