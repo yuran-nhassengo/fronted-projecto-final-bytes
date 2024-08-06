@@ -11,6 +11,7 @@ import { Login } from "./components/login";
 import { ProtectedRoute } from "./components/protect-route";
 import { Configuracoes } from "./components/configuracoes";
 import { LoginPage } from "./pages/login-page";
+import { SignupPageCredor } from "./pages/signup-page-credor";
 
 export const route = createBrowserRouter([
 
@@ -37,7 +38,7 @@ export const route = createBrowserRouter([
         path:"/configuracoes",
         element: (
             <ProtectedRoute>
-                <Configuracoes />
+                <ConfiguracoesPage />
             </ProtectedRoute>
         ),
     },
@@ -52,6 +53,10 @@ export const route = createBrowserRouter([
     {
         path:"/login",
         element:<LoginPage/>,
+    },
+    {
+        path:"/signup-page-credor",
+        element:<SignupPageCredor/>,
     },
 ])
 
