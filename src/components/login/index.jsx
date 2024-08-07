@@ -14,7 +14,7 @@ export const Login = () => {
         setError(''); 
        
         try {
-          const response = await axios.post('http://192.168.22.233:8000/api/devedor/login', {
+          const response = await axios.post('http://192.168.1.27:8000/api/devedor/login', {
             email,
             senha
           });
