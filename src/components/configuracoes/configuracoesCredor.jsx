@@ -30,7 +30,7 @@ export const ConfiguracoesCredor = () => {
             'Authorization': `Bearer ${token}`
           }
         });
-        const data = response.data.data[0];
+        const data = response.data;
 
         
 

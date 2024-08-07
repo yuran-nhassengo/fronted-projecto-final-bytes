@@ -30,7 +30,7 @@ export const HeaderNav = ({ title, currentUserName, currentUserId }) => {
                 ]);
             } catch (error) {
                 console.error('Erro ao buscar empresas:', error);
-                // Adicione tratamento de erro aqui, como uma mensagem de erro para o usuário
+               
             }
         };
 
@@ -40,32 +40,36 @@ export const HeaderNav = ({ title, currentUserName, currentUserId }) => {
     }, [currentUserId, currentUserName]);
 
     const handleClick = async (value) => {
+        
         if (value === 'create_account') {
             navigate('/signup-page-credor', { state: { userId: currentUserId } });
         } else {
+          
             const selected = options.find(option => option.value === value);
-
+    
             if (selected) {
-                setSelectedOption(selected);
-
+                setSelectedOption(selected); // Atualiza a seleção
+    
                 try {
-                    // Enviar uma solicitação para trocar a conta
-                    const tipoConta = value === 'current_user' ? 'devedor' : 'credor';  // Ajustar conforme a lógica da sua aplicação
+                    
+                    const tipoConta = value === 'current_user' ? 'devedor' : 'credor'; 
                     const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/user/switch`, {
                         userId: value,
                         tipoConta
                     }, {
                         headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`  // Usar o token atual do armazenamento local
+                            'Authorization': `Bearer ${localStorage.getItem('token')}` 
                         }
                     });
-
-                    // Atualizar o estado de autenticação com o novo token
+    
+                 
                     login(response.data.token); 
                 } catch (error) {
                     console.error('Erro ao trocar de conta:', error);
-                    // Adicione tratamento de erro aqui, como uma mensagem de erro para o usuário
+                   
                 }
+            } else {
+                console.warn('Opção selecionada não encontrada:', value);
             }
         }
     };
