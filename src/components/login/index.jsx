@@ -14,7 +14,7 @@ export const Login = () => {
         setError(''); 
        
         try {
-          const response = await axios.post('http://192.168.22.233:8000/api/devedor/login', {
+          const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/devedor/login`, {
             email,
             senha
           });

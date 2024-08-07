@@ -1,56 +1,54 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { CompanyCard } from '../cards/emprestimo'; 
-
-const companies = [
-    {
-        nomeEmpresa: 'Unacredito',
-        montante: 'R$ 10.000',
-        dataEnvio: '2024-08-01',
-        dataPagamento: '2024-08-10',
-        status: 'Pago',
-        juris: 'Jurídico A'
-    },
-  
-];
-
-const handleRequestLoan = (company) => {
-    console.log('Solicitar mais empréstimo para:', company);
-   
-};
-
-const handleNewDividendRequest = () => {
-    console.log('Solicitar novo dividendo');
-  
-};
+import { Link } from 'react-router-dom';
 
 export const EmprestimoDevedor = () => {
+    const [emprestimos, setEmprestimos] = useState([]);
+
+    useEffect(() => {
+        const fetchEmprestimos = async () => {
+            try {
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/emprestimos`); 
+                setEmprestimos(response.data);
+            } catch (error) {
+                console.error('Erro ao buscar empréstimos:', error);
+            }
+        };
+
+        fetchEmprestimos();
+    }, []);
+
+    const handleNewDividendRequest = () => {
+        console.log('Solicitar novo dividendo');
+    };
+
     return (
-        <div className ="p-4">
+        <div className="p-4">
             <div className="mb-6">
-
-
-                <button
+                <Link 
+                    to="/criar-emprestimo"
                     onClick={handleNewDividendRequest}
-                    className="px-4 py-2 bg-blue text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                    className="px-4 py-2 bg-blue text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                     Solicitar Divida
-                </button>
-
+                </Link>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-
-                {companies.map(company => (
+                {emprestimos.map(emprestimo => (
                     <CompanyCard
-                        key={company.nomeEmpresa}
-                        company={company}
+                        key={emprestimo.nomeEmpresa}
+                        company={{
+                            nomeEmpresa: emprestimo.nomeEmpresa,
+                            montante: `R$ ${emprestimo.valor.toFixed(2)}`,  
+                            dataEnvio: emprestimo.dataEnvio,  
+                            dataPagamento: emprestimo.dataDevolucao,
+                            status: 'Pendente', 
+                            juris: 'Jurídico A' 
+                        }}
                     />
                 ))}
-
             </div>
-
-
         </div>
-
     );
 };
