@@ -35,15 +35,12 @@ export const Login = () => {
     return (
 
         <div className="flex h-screen">
-        {/* Lado esquerdo: Background verde */}
         <div className="flex flex-col justify-center items-center w-1/2 bg-[#00A86B] text-white p-8">
             <h1 className="text-4xl font-bold mb-4 text-center">Bem-Vindo Div-just!</h1>
             <p className="text-lg text-center">
                 Obrigado por escolher a Div-just. Estamos ansiosos para ajudar você a atingir seus objetivos financeiros!
             </p>
         </div>
-
-        {/* Lado direito: Formulário de login */}
         <div className="flex justify-center items-center w-1/2 bg-white p-8">
             <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
                 <h1 className="text-2xl font-bold mb-6 text-center text-gray-900 text-green-2">Login</h1>
