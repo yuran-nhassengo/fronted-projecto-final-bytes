@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const EmprestimoDevedor = () => {
     const [emprestimos, setEmprestimos] = useState([]);
-    const [selectedFilter, setSelectedFilter] = useState('todos'); // Estado para a seleção dos filtros
+    const [selectedFilter, setSelectedFilter] = useState('todos'); 
 
     useEffect(() => {
         const fetchEmprestimos = async () => {
@@ -25,7 +25,7 @@ export const EmprestimoDevedor = () => {
     };
 
     const filteredEmprestimos = emprestimos.filter(emprestimo => 
-        selectedFilter === 'todos' || emprestimo.usuario === 'meu-usuario' // Altere a condição conforme necessário
+        selectedFilter === 'todos' || emprestimo.usuario === 'meu-usuario' || emprestimo.usuario === 'por-pagar'
     );
 
     const handleNewDividendRequest = () => {
@@ -73,6 +73,17 @@ export const EmprestimoDevedor = () => {
                     className="ml-4"
                 />
                 <label htmlFor="meus-emprestimos" className="ml-2">Meus Empréstimos</label>
+
+                <input 
+                    type="radio" 
+                    id="por-pagar" 
+                    name="filter" 
+                    value="por-pagar" 
+                    checked={selectedFilter === 'por-pagar'}
+                    onChange={handleFilterChange}
+                    className="ml-4"
+                />
+                <label htmlFor="meus-emprestimos" className="ml-2">Por Pagar</label>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
