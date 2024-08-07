@@ -12,17 +12,19 @@ export const Login = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://192.168.1.37:8000/api/devedor/login', {
-                email,
-                senha
-            });
+          const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/devedor/login`, {
+            email,
+            senha
+          });
+    
+          console.log('Resposta da API:', response.data);
+          
+          localStorage.setItem('token', response.data.token);
+          console.log('Login bem-sucedido:', response.data);
+    
+          
+          window.location.href = '/'; 
 
-            console.log('Resposta da API:', response.data);
-            
-            localStorage.setItem('token', response.data.token);
-            console.log('Login bem-sucedido:', response.data);
-
-            window.location.href = '/'; 
         } catch (err) {
             console.error('Falha no login:', err.response?.data?.message || err.message);
             setError('Nome de usuário ou senha inválidos');

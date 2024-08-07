@@ -26,7 +26,9 @@ export const Configuracoes = () => {
       }
 
       try {
-        const response = await axios.get('http://192.168.1.37:8000/api/get-devedor', {
+
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/get-devedor`, {
+
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -88,7 +90,9 @@ export const Configuracoes = () => {
     }
 
     try {
-      await axios.put('http://192.168.1.37:8000/api/devedor/update', formData, {
+
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/devedor/update`, formData, {
+
         headers: {
           'Authorization': `Bearer ${token}`
         }

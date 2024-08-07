@@ -51,9 +51,9 @@ export const Signup = () => {
         setError('');
         setSuccessMessage('');
 
-        try {
-            
-            const response = await axios.post('http://192.168.1.37:8000/api/devedor/signup', dataToSend);
+        try {         
+            const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/devedor/signup`, dataToSend);
+
 
             
             setSuccessMessage('Cadastro realizado com sucesso!');
