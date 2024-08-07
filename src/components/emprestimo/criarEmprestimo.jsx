@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Footer } from '../navBar'; // Certifique-se de que o caminho está correto
+import { Footer } from '../navBar';
 
 export const CriarEmprestimo = () => {
     const [empresa, setEmpresa] = useState('');
@@ -11,25 +11,27 @@ export const CriarEmprestimo = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const token = localStorage.getItem('token'); // Recupera o token do localStorage
+    const token = localStorage.getItem('token');
 
     const fetchCredores = async () => {
         try {
             const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores`, {
                 headers: {
-                    'Authorization': `Bearer ${token}` // Usa o token de autenticação
+                    'Authorization': `Bearer ${token}`
                 }
             });
-            console.log('Dados dos credores:', response.data);
             setCredores(response.data.data || response.data);
         } catch (error) {
             if (error.response) {
-                if (error.response.status === 401) {
-                    setError('Não autorizado. Verifique seu token.');
-                } else if (error.response.status === 403) {
-                    setError('Acesso proibido. Verifique suas permissões.');
-                } else {
-                    setError('Erro ao buscar credores.');
+                switch (error.response.status) {
+                    case 401:
+                        setError('Não autorizado. Verifique seu token.');
+                        break;
+                    case 403:
+                        setError('Acesso proibido. Verifique suas permissões.');
+                        break;
+                    default:
+                        setError('Erro ao buscar credores.');
                 }
             } else {
                 setError('Erro ao buscar credores.');
@@ -60,7 +62,7 @@ export const CriarEmprestimo = () => {
                 valor
             }, {
                 headers: {
-                    'Authorization': `Bearer ${token}` // Usa o token de autenticação
+                    'Authorization': `Bearer ${token}`
                 }
             });
             alert('Empréstimo criado com sucesso!');
@@ -70,12 +72,15 @@ export const CriarEmprestimo = () => {
             setValor('');
         } catch (error) {
             if (error.response) {
-                if (error.response.status === 401) {
-                    alert('Não autorizado. Verifique seu token.');
-                } else if (error.response.status === 403) {
-                    alert('Acesso proibido. Verifique suas permissões.');
-                } else {
-                    alert('Erro ao criar empréstimo. Por favor, tente novamente.');
+                switch (error.response.status) {
+                    case 401:
+                        alert('Não autorizado. Verifique seu token.');
+                        break;
+                    case 403:
+                        alert('Acesso proibido. Verifique suas permissões.');
+                        break;
+                    default:
+                        alert('Erro ao criar empréstimo. Por favor, tente novamente.');
                 }
             } else {
                 alert('Erro ao criar empréstimo. Por favor, tente novamente.');
@@ -162,7 +167,7 @@ export const CriarEmprestimo = () => {
                 <div className="flex justify-center mt-6">
                     <button
                         type="submit"
-                        className="px-4 py-2 bg-blue-500 text-white rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="px-4 py-2 bg-blue text-white rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         Enviar
                     </button>
