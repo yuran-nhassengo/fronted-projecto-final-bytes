@@ -1,5 +1,8 @@
-import React from 'react'
+
 import { Footer } from '../components/navBar'
+
+  import DisputaDevedor from '../components/disputa/disputaDevedor'
+
 
 export const Disputa = () => {
   return (
@@ -8,11 +11,13 @@ export const Disputa = () => {
 
 
       Disputa
-
+<DisputaDevedor/>
 
       </main>
     <Footer/>
     </>
+
+    
   )
 }
 
