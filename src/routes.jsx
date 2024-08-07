@@ -12,6 +12,7 @@ import { ProtectedRoute } from "./components/protect-route";
 import { Configuracoes } from "./components/configuracoes";
 import { LoginPage } from "./pages/login-page";
 import { SignupPageCredor } from "./pages/signup-page-credor";
+import { CriarEmprestimo } from "./components/emprestimo/criarEmprestimo";
 
 export const route = createBrowserRouter([
 
@@ -39,6 +40,14 @@ export const route = createBrowserRouter([
         element: (
             <ProtectedRoute>
                 <ConfiguracoesPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path:"/criar-emprestimo",
+        element: (
+            <ProtectedRoute>
+                <CriarEmprestimo/>
             </ProtectedRoute>
         ),
     },

@@ -25,12 +25,12 @@ export const ConfiguracoesCredor = () => {
       }
 
       try {
-        const response = await axios.get('http://192.168.22.233:8000/api/credor', {
+        const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credor`, {
           headers: {
             'Authorization': `Bearer ${token}`
           }
         });
-        const data = response.data.data[0];
+        const data = response.data;
 
         
 
@@ -69,7 +69,7 @@ export const ConfiguracoesCredor = () => {
     }
 
     try {
-      await axios.put('http://192.168.22.233:8000/api/credor/update', formData, {
+      await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/credor/update`, formData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

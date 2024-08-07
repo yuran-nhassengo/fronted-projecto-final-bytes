@@ -53,7 +53,11 @@ export const Signup = () => {
 
         try {
             
+<<<<<<< HEAD
             const response = await axios.post(' http://192.168.1.27:8000/api/devedor/signup', dataToSend);
+=======
+            const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/devedor/signup`, dataToSend);
+>>>>>>> 47c5ae259d2b9cea542f6c097a1c3ca5cf5c4ad2
 
             
             setSuccessMessage('Cadastro realizado com sucesso!');
