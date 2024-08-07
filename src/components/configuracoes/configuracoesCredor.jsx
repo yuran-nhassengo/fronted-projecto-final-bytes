@@ -31,6 +31,9 @@ export const ConfiguracoesCredor = () => {
           }
         });
         const data = response.data.data[0];
+
+        
+
         console.log(data);
         setFormData({
           nomeEmpresa: data.nomeEmpresa || '',
