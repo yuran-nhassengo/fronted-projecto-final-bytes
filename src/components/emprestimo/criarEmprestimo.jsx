@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import QRCode from 'qrcode.react'; 
 import { Footer } from '../navBar';
 
 export const CriarEmprestimo = () => {
@@ -10,6 +11,8 @@ export const CriarEmprestimo = () => {
     const [credores, setCredores] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [qrCodeValue, setQrCodeValue] = useState(''); 
+    const [contaPessoal, setContaPessoal] = useState(false); 
 
     const token = localStorage.getItem('token');
 
@@ -49,27 +52,39 @@ export const CriarEmprestimo = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!empresa || !motivo || !dataDevolucao || !valor) {
-            alert('Por favor, preencha todos os campos.');
+        if (!motivo || !dataDevolucao || !valor) {
+            alert('Por favor, preencha todos os campos obrigatórios.');
             return;
         }
 
         try {
-            const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/emprestimos`, {
-                credorId: empresa,
-                motivo,
-                dataDevolucao,
-                valor
-            }, {
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            });
-            alert('Empréstimo criado com sucesso!');
-            setEmpresa('');
-            setMotivo('');
-            setDataDevolucao('');
-            setValor('');
+            if (contaPessoal) {
+                const info = {
+                    motivo,
+                    dataDevolucao,
+                    valor
+                };
+                const queryString = new URLSearchParams(info).toString();
+                setQrCodeValue(`https://example.com/confirmar-emprestimo?${queryString}`);
+            } else {
+                
+                const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/emprestimos`, {
+                    credorId: empresa,
+                    motivo,
+                    dataDevolucao,
+                    valor
+                }, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                alert('Empréstimo criado com sucesso!');
+                setEmpresa('');
+                setMotivo('');
+                setDataDevolucao('');
+                setValor('');
+                setQrCodeValue(''); 
+            }
         } catch (error) {
             if (error.response) {
                 switch (error.response.status) {
@@ -89,6 +104,13 @@ export const CriarEmprestimo = () => {
         }
     };
 
+    const handleRadioChange = (isContaPessoal) => {
+        setContaPessoal(isContaPessoal);
+        if (!isContaPessoal) {
+            setQrCodeValue(''); 
+        }
+    };
+
     if (loading) return <p>Carregando credores...</p>;
     if (error) return <p>{error}</p>;
 
@@ -96,29 +118,58 @@ export const CriarEmprestimo = () => {
         <div className="container mx-auto p-4 sm:p-6">
             <h1 className="text-2xl font-bold mb-6">Criar Empréstimo</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label htmlFor="empresa" className="block text-sm font-medium text-gray-700">
+                <div className="flex items-center">
+                    <input
+                        type="radio"
+                        id="contaPessoal"
+                        name="tipoConta"
+                        checked={contaPessoal}
+                        onChange={() => handleRadioChange(true)}
+                        className="mr-2"
+                    />
+                    <label htmlFor="contaPessoal" className="text-sm font-medium text-gray-700">
+                        Conta Pessoal
+                    </label>
+                </div>
+                <div className="flex items-center">
+                    <input
+                        type="radio"
+                        id="empresa"
+                        name="tipoConta"
+                        checked={!contaPessoal}
+                        onChange={() => handleRadioChange(false)}
+                        className="mr-2"
+                    />
+                    <label htmlFor="empresa" className="text-sm font-medium text-gray-700">
                         Empresa
                     </label>
-                    <select
-                        id="empresa"
-                        name="empresa"
-                        value={empresa}
-                        onChange={(e) => setEmpresa(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    >
-                        <option value="">Selecione uma empresa</option>
-                        {credores.length > 0 ? (
-                            credores.map((credor) => (
-                                <option key={credor._id} value={credor._id}>
-                                    {credor.nomeEmpresa}
-                                </option>
-                            ))
-                        ) : (
-                            <option value="">Nenhuma empresa encontrada</option>
-                        )}
-                    </select>
                 </div>
+
+                {!contaPessoal && (
+                    <div>
+                        <label htmlFor="empresa" className="block text-sm font-medium text-gray-700">
+                            Selecionar Empresa
+                        </label>
+                        <select
+                            id="empresa"
+                            name="empresa"
+                            value={empresa}
+                            onChange={(e) => setEmpresa(e.target.value)}
+                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        >
+                            <option value="">Selecione uma empresa</option>
+                            {credores.length > 0 ? (
+                                credores.map((credor) => (
+                                    <option key={credor._id} value={credor._id}>
+                                        {credor.nomeEmpresa}
+                                    </option>
+                                ))
+                            ) : (
+                                <option value="">Nenhuma empresa encontrada</option>
+                            )}
+                        </select>
+                    </div>
+                )}
 
                 <div>
                     <label htmlFor="motivo" className="block text-sm font-medium text-gray-700">
@@ -169,10 +220,18 @@ export const CriarEmprestimo = () => {
                         type="submit"
                         className="px-4 py-2 bg-blue text-white rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
-                        Enviar
+                        {contaPessoal ? 'Gerar QR Code' : 'Enviar'}
                     </button>
                 </div>
             </form>
+
+            {qrCodeValue && (
+                <div className="mt-6">
+                    <h3 className="text-lg font-medium mb-2">QR Code do Empréstimo</h3>
+                    <QRCode value={qrCodeValue} size={256} />
+                </div>
+            )}
+
             <Footer />
         </div>
     );
