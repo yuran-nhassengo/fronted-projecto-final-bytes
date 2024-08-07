@@ -25,7 +25,7 @@ export const ConfiguracoesCredor = () => {
       }
 
       try {
-        const response = await axios.get('http://192.168.22.233:8000/api/credor', {
+        const response = await axios.get('http://192.168.1.37:8000/api/credor', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -69,7 +69,7 @@ export const ConfiguracoesCredor = () => {
     }
 
     try {
-      await axios.put('http://192.168.22.233:8000/api/credor/update', formData, {
+      await axios.put('http://192.168.1.37:8000/api/credor/update', formData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

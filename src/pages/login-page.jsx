@@ -4,13 +4,14 @@ import { Footer } from '../components/navBar';
 
 export const LoginPage = () => {
     return (
-        <div className="relative min-h-screen bg-gray-100">
-            <main className="pt-16 mt-8 pb-16">
-                <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <Login/>
+        <div className="relative min-h-screen bg-gray-100 flex flex-col">
+            <main className="flex-grow flex items-center justify-center">
+                <div className="w-full h-full flex">
+                    <Login />
                 </div>
             </main>
             <Footer />
         </div>
     );
 };
+

@@ -17,7 +17,7 @@ export const HeaderNav = ({ title, currentUserName, currentUserId }) => {
     useEffect(() => {
         const fetchCompanies = async () => {
             try {
-                const response = await axios.get(`http://192.168.22.233:8000/api/credor/${currentUserId}`);
+                const response = await axios.get(`http://192.168.1.37:8000/api/credor/${currentUserId}`);
                 const companies = response.data.map(credor => ({
                     name: credor.nomeEmpresa,
                     value: credor._id 
@@ -51,7 +51,7 @@ export const HeaderNav = ({ title, currentUserName, currentUserId }) => {
                 try {
                     // Enviar uma solicitação para trocar a conta
                     const tipoConta = value === 'current_user' ? 'devedor' : 'credor';  // Ajustar conforme a lógica da sua aplicação
-                    const response = await axios.post('http://192.168.22.233:8000/api/user/switch', {
+                    const response = await axios.post('http://192.168.1.37:8000/api/user/switch', {
                         userId: value,
                         tipoConta
                     }, {

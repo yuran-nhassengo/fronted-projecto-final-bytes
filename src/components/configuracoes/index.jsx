@@ -26,7 +26,7 @@ export const Configuracoes = () => {
       }
 
       try {
-        const response = await axios.get('http://192.168.22.233:8000/api/get-devedor', {
+        const response = await axios.get('http://192.168.1.37:8000/api/get-devedor', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -88,7 +88,7 @@ export const Configuracoes = () => {
     }
 
     try {
-      await axios.put('http://192.168.1.58:8000/api/devedor/update', formData, {
+      await axios.put('http://192.168.1.37:8000/api/devedor/update', formData, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

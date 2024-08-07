@@ -53,7 +53,7 @@ export const Signup = () => {
 
         try {
             
-            const response = await axios.post(' http://192.168.22.233:8000/api/devedor/signup', dataToSend);
+            const response = await axios.post('http://192.168.1.37:8000/api/devedor/signup', dataToSend);
 
             
             setSuccessMessage('Cadastro realizado com sucesso!');
@@ -69,178 +69,199 @@ export const Signup = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
-            <div className="w-full max-w-lg bg-white p-6 rounded-lg shadow-md">
-                <h1 className="text-2xl font-bold mb-6 text-center text-gray-900">Cadastro</h1>
-                <form onSubmit={handleSubmit} className="space-y-4">
-                    {step === 1 && (
-                        <>
-                            <div>
-                                <label htmlFor="nome" className="block text-gray-700 text-sm font-medium mb-1">Nome</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="bi" className="block text-gray-700 text-sm font-medium mb-1">Número de Bilhete de Identidade</label>
-                                <input
-                                    type="text"
-                                    id="bi"
-                                    name="bi"
-                                    value={formData.bi}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="dataNascimento" className="block text-gray-700 text-sm font-medium mb-1">Data de Nascimento</label>
-                                <input
-                                    type="date"
-                                    id="dataNascimento"
-                                    name="dataNascimento"
-                                    value={formData.dataNascimento}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="genero" className="block text-gray-700 text-sm font-medium mb-1">Gênero</label>
-                                <select
-                                    id="genero"
-                                    name="genero"
-                                    value={formData.genero}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
+        <div className="flex flex-col md:flex-row w-full h-full">
+            <div className="hidden md:flex md:w-1/2 bg-green text-white p-8 flex flex-col justify-center items-center h-screen">
+                <h1 className="text-4xl font-bold mb-4 text-center">Bem-Vindo Div-just!</h1>
+                <p className="text-lg text-center break-words">
+                    Obrigado por escolher a Div-just. Estamos ansiosos <br className="hidden md:inline"/> para ajudar você a atingir seus objetivos financeiros!
+                </p>
+                <img 
+                    alt="Imagem de dinheiro" 
+                    src="rem.png"
+                    className="w-64 h-64 object-cover"
+                />
+            </div>
+            <div className="flex-1 flex items-center justify-center min-h-screen bg-white p-8">
+                <div className="w-full max-w-sm bg-white p-6 rounded-lg shadow-md">
+                    <h1 className="text-2xl font-bold mb-6 text-center text-green">Cadastro</h1>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        {step === 1 && (
+                            <>
+                                <div>
+                                    <label htmlFor="nome" className="block text-gray-700 text-sm font-medium mb-1">Nome</label>
+                                    <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        placeholder="Seu nome"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="bi" className="block text-gray-700 text-sm font-medium mb-1">Número de Bilhete de Identidade</label>
+                                    <input
+                                        type="text"
+                                        id="bi"
+                                        name="bi"
+                                        placeholder="Bi"
+                                        value={formData.bi}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="dataNascimento" className="block text-gray-700 text-sm font-medium mb-1">Data de Nascimento</label>
+                                    <input
+                                        type="date"
+                                        id="dataNascimento"
+                                        name="dataNascimento"
+                                        value={formData.dataNascimento}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="genero" className="block text-gray-700 text-sm font-medium mb-1">Gênero</label>
+                                    <select
+                                        id="genero"
+                                        name="genero"
+                                        value={formData.genero}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    >
+                                        <option value="">Selecione...</option>
+                                        <option value="masculino">Masculino</option>
+                                        <option value="feminino">Feminino</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label htmlFor="profissao" className="block text-gray-700 text-sm font-medium mb-1">Profissão</label>
+                                    <input
+                                        type="text"
+                                        id="profissao"
+                                        name="profissao"
+                                        placeholder="Profissão"
+                                        value={formData.profissao}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="contacto" className="block text-gray-700 text-sm font-medium mb-1">Contato</label>
+                                    <input
+                                        type="text"
+                                        id="contacto"
+                                        name="contacto"
+                                        placeholder="Ex: 840055876"
+                                        value={formData.contacto}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={() => setStep(2)}
+                                    className="w-full py-2 px-4 bg-green text-white font-bold rounded-md hover:bg-[#007a63] transition duration-150 ease-in-out"
                                 >
-                                    <option value="">Selecione...</option>
-                                    <option value="masculino">Masculino</option>
-                                    <option value="feminino">Feminino</option>
-                                    <option value="outro">Outro</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label htmlFor="profissao" className="block text-gray-700 text-sm font-medium mb-1">Profissão</label>
-                                <input
-                                    type="text"
-                                    id="profissao"
-                                    name="profissao"
-                                    value={formData.profissao}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="contacto" className="block text-gray-700 text-sm font-medium mb-1">Contato</label>
-                                <input
-                                    type="text"
-                                    id="contacto"
-                                    name="contacto"
-                                    value={formData.contacto}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <button
-                                type="button"
-                                onClick={() => setStep(2)}
-                                className="w-full py-2 px-4 bg-orange-700 text-white font-bold rounded-md hover:bg-orange-800 transition duration-150 ease-in-out"
-                            >
-                                Próximo
-                            </button>
-                        </>
-                    )}
-
-                    {step === 2 && (
-                        <>
-                            <div>
-                                <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-1">Email</label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="endereco" className="block text-gray-700 text-sm font-medium mb-1">Endereço</label>
-                                <input
-                                    type="text"
-                                    id="endereco"
-                                    name="endereco"
-                                    value={formData.endereco}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="senha" className="block text-gray-700 text-sm font-medium mb-1">Senha</label>
-                                <input
-                                    type="password"
-                                    id="senha"
-                                    name="senha"
-                                    value={formData.senha}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="confirmSenha" className="block text-gray-700 text-sm font-medium mb-1">Confirmar Senha</label>
-                                <input
-                                    type="password"
-                                    id="confirmSenha"
-                                    name="confirmSenha"
-                                    value={formData.confirmSenha}
-                                    onChange={handleChange}
-                                    required
-                                    className="w-full p-2 border border-gray-300 rounded-md"
-                                />
-                            </div>
-                            <div className="flex items-center">
-                                <input
-                                    type="checkbox"
-                                    id="aceitarTermos"
-                                    name="aceitarTermos"
-                                    checked={formData.aceitarTermos}
-                                    onChange={handleChange}
-                                    required
-                                    className="mr-2"
-                                />
-                                <label htmlFor="aceitarTermos" className="text-gray-700 text-sm">Aceito os <a href="#" className="text-blue-600 hover:underline">termos e condições</a></label>
-                            </div>
-                            <button
-                                type="submit"
-                                className="w-full py-2 px-4 bg-blue text-white font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
-                            >
-                                Cadastrar
-                            </button>
-                        </>
-                    )}
-
-                    {error && (
-                        <div className="mt-4 text-red-600">{error}</div>
-                    )}
-
-                    {successMessage && (
-                        <div className="mt-4 text-green-600">{successMessage}</div>
-                    )}
-                </form>
+                                    Próximo
+                                </button>
+                            </>
+                        )}
+    
+                        {step === 2 && (
+                            <>
+                                <div>
+                                    <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-1">Email</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        name="email"
+                                        placeholder="empresa@gmail.com"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="endereco" className="block text-gray-700 text-sm font-medium mb-1">Endereço</label>
+                                    <input
+                                        type="text"
+                                        id="endereco"
+                                        name="endereco"
+                                        placeholder="Rua, Nº, Bairro"
+                                        value={formData.endereco}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="senha" className="block text-gray-700 text-sm font-medium mb-1">Senha</label>
+                                    <input
+                                        type="password"
+                                        id="senha"
+                                        name="senha"
+                                        placeholder="Senha"
+                                        value={formData.senha}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="confirmSenha" className="block text-gray-700 text-sm font-medium mb-1">Confirmar Senha</label>
+                                    <input
+                                        type="password"
+                                        id="confirmSenha"
+                                        name="confirmSenha"
+                                        placeholder="Confirmar Senha"
+                                        value={formData.confirmSenha}
+                                        onChange={handleChange}
+                                        required
+                                        className="w-full p-2 border border-gray-300 rounded-md"
+                                    />
+                                </div>
+                                <div className="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="aceitarTermos"
+                                        name="aceitarTermos"
+                                        checked={formData.aceitarTermos}
+                                        onChange={handleChange}
+                                        required
+                                        className="mr-2"
+                                    />
+                                    <label htmlFor="aceitarTermos" className="text-gray-700 text-sm">Aceito os <a href="#" className="text-blue-600 hover:underline">termos e condições</a></label>
+                                </div>
+                                <button
+                                    type="submit"
+                                    className="w-full py-2 px-4 bg-green text-white font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                                >
+                                    Cadastrar
+                                </button>
+                            </>
+                        )}
+    
+                        {error && (
+                            <div className="mt-4 text-red-600">{error}</div>
+                        )}
+    
+                        {successMessage && (
+                            <div className="mt-4 text-green-600">{successMessage}</div>
+                        )}
+                    </form>
+                </div>
             </div>
         </div>
-    );
+    );    
 };
