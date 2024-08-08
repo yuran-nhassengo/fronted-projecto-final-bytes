@@ -49,10 +49,12 @@ export const HeaderNav = ({ title, currentUserName, currentUserId }) => {
             const selected = options.find(option => option.value === value);
     
             if (selected) {
-                setSelectedOption(selected); // Atualiza a seleção
+                setSelectedOption(selected); 
     
                 try {            
                     const tipoConta = value === 'current_user' ? 'devedor' : 'credor'; 
+                    console.log('Troca de conta - userId:', value);
+                    console.log('Troca de conta - tipoConta:', tipoConta);
                     const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/user/switch`, {
 
                         userId: value,

@@ -135,7 +135,7 @@ export const DetalhesEmprestimoDevedor = () => {
                     <p><strong>Data de Envio:</strong> {emprestimo.criadoEm}</p>
                     <p><strong>Data de Devolução:</strong> {emprestimo.dataDevolucao}</p>
                     <p><strong>Status:</strong> {emprestimo.status}</p>
-                    <p><strong>Jurídico:</strong> {emprestimo.juris}</p>
+                    <p><strong>Jurís:</strong> {emprestimo.juris}</p>
                     <button
                         onClick={handleEditClick}
                         className="px-4 py-2 bg-yellow text-white font-semibold rounded-md hover:bg-yellow mr-2"
