@@ -1,6 +1,7 @@
 
 
 
+<<<<<<< HEAD
 const disputes = [
   { id: 1, name: 'Disputa Número : 01' },
   { id: 2, name: 'Disputa Número : 02' },
@@ -37,4 +38,6 @@ export default DisputaDevedor;
 
 
 
+=======
+>>>>>>> rascunhof
 

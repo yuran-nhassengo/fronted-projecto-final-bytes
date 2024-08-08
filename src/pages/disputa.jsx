@@ -1,19 +1,15 @@
-import React from 'react'
-import { Footer } from '../components/navBar'
+
+import { Footer } from '../components/navBar';
+
 
 export const Disputa = () => {
   return (
     <>
       <main>
-
-
-      Disputa
-
-
+        Disputa
+        <Disputa/> {}
       </main>
-    <Footer/>
+      <Footer />
     </>
-  )
-}
-
-
+  );
+};
