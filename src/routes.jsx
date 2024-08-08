@@ -53,7 +53,7 @@ export const route = createBrowserRouter([
         ),
     },
     {
-        path:"/detalhes-emprestimo-devedor",
+        path:"/detalhes-emprestimo-devedor/:id",
         element: (
             <ProtectedRoute>
                 <DetalhesEmprestimoDevedor/>

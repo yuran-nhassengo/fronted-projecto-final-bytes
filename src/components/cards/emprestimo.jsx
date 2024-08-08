@@ -1,10 +1,13 @@
-import React from "react";
+import React from 'react';
 
-export const CompanyCard = ({ company }) => {
+export const CompanyCard = ({ company, onDoubleClick }) => {
     const { nomeEmpresa, montante, dataEnvio, dataPagamento, status, juris } = company;
 
     return (
-        <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <div 
+            className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer"
+            onDoubleClick={() => onDoubleClick(company)}
+        >
             <div className="p-6">
                 <h2 className="text-xl font-bold mb-2 text-gray-900">{nomeEmpresa}</h2>
                 <div className="flex items-center justify-between mb-4">
