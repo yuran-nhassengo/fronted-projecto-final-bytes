@@ -18,8 +18,9 @@ export const EmprestimoCredor = () => {
                 console.error('Token não encontrado');
                 return;
             }
+            console.log('1111')
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credor/emprestimo`,{
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores/emprestimo`,{
                     headers: {
                         'Authorization': `Bearer ${token}`
                       }
@@ -111,7 +112,7 @@ export const EmprestimoCredor = () => {
                         key={emprestimo._id}
                         company={{
                             _id: emprestimo._id, 
-                            nomeEmpresa: emprestimo.nomeEmpresa,
+                            nomeEmpresa: emprestimo.nomeDevedor,
                             montante: `R$ ${emprestimo.valor.toFixed(2)}`,
                             dataEnvio: emprestimo.dataEnvio,
                             dataPagamento: emprestimo.dataDevolucao,
