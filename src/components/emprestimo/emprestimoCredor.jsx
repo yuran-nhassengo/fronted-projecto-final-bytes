@@ -18,8 +18,9 @@ export const EmprestimoCredor = () => {
                 console.error('Token não encontrado');
                 return;
             }
+            console.log('1111')
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credor/emprestimo`,{
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores/emprestimo`,{
                     headers: {
                         'Authorization': `Bearer ${token}`
                       }
@@ -62,13 +63,14 @@ export const EmprestimoCredor = () => {
                     to="/criar-emprestimo"
                     onClick={handleNewDividendRequest}
                     className="px-4 py-2 bg-green text-white font-semibold rounded-md hover:bg-blue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Solicitar Divida
+                    Responder Solicitacao
                 </Link>
-                <button
+                <Link
+                    to="/ofertas-page"
                     onClick={handleEmprestar}
                     className="px-4 py-2 bg-green text-white font-semibold rounded-md hover:bg-blue focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                    Emprestar
-                </button>
+                    Criar Oferta
+                </Link>
             </div>
 
             <div className="mb-6">
@@ -111,7 +113,7 @@ export const EmprestimoCredor = () => {
                         key={emprestimo._id}
                         company={{
                             _id: emprestimo._id, 
-                            nomeEmpresa: emprestimo.nomeEmpresa,
+                            nomeEmpresa: emprestimo.nomeDevedor,
                             montante: `R$ ${emprestimo.valor.toFixed(2)}`,
                             dataEnvio: emprestimo.dataEnvio,
                             dataPagamento: emprestimo.dataDevolucao,
