@@ -1,24 +1,15 @@
 
-import { Footer } from '../components/navBar'
-
-  import DisputaDevedor from '../components/disputa/disputaDevedor'
+import { Footer } from '../components/navBar';
 
 
 export const Disputa = () => {
   return (
     <>
       <main>
-
-
-      Disputa
-<DisputaDevedor/>
-
+        Disputa
+        <Disputa/> {}
       </main>
-    <Footer/>
+      <Footer />
     </>
-
-    
-  )
-}
-
-
+  );
+};
