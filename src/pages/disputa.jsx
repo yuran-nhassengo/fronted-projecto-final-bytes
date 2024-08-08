@@ -1,19 +1,17 @@
-import React from 'react'
-import { Footer } from '../components/navBar'
+import { Footer } from '../components/navBar';
+import DisputaCredor from '../components/disputa/disputaCredor';
+import DisputaDevedor from '../components/disputa/disputaDevedor';
 
 export const Disputa = () => {
   return (
     <>
       <main>
-
-
-      Disputa
-
-
+        <h1>Disputa</h1>
+        <Disputa/>
+        <DisputaCredor />
+        <DisputaDevedor />
       </main>
-    <Footer/>
+      <Footer />
     </>
-  )
-}
-
-
+  );
+};
