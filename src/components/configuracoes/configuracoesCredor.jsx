@@ -86,10 +86,10 @@ export const ConfiguracoesCredor = () => {
     setIsEditing(!isEditing); 
   };
 
-  return (
-    <div className="bg-gray-100 min-h-screen flex flex-col">
+  return ( 
+    <div className="min-h-screen flex flex-col">
       <HeaderNav title="Configurações do Credor" />
-      <div className="container mx-auto p-4 sm:p-6 flex-grow">
+      <div className="container mx-auto p-4 sm:p-6 flex-grow bg-green rounded-lg shadow-md">
         <div className="flex flex-col items-center">
           <div className="mb-6 text-center">
             <img 
@@ -182,7 +182,7 @@ export const ConfiguracoesCredor = () => {
                 <button 
                   type="button" 
                   onClick={isEditing ? handleSaveClick : handleEditClick}
-                  className={`px-4 py-2 ${isEditing ? 'bg-green hover:bg-green-600' : 'bg-blue hover:bg-blue-600'} text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+                  className={`px-4 py-2 ${isEditing ? 'bg-green hover:bg-[#007a63]' : 'bg-blue hover:bg-[#007a63]'} text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
                 >
                   {isEditing ? 'Salvar' : 'Editar'}
                 </button>

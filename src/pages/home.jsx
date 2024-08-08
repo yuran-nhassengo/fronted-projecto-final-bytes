@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { CompanyProfileCard } from '../components/cards/ofertas';  
-import { SearchComponent } from '../components/search';  
+import { SearchComponent } from '../components/search'; 
 import { Footer } from '../components/navBar';  
 
 export const Home = () => {

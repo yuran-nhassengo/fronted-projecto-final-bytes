@@ -104,7 +104,7 @@ export const Configuracoes = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 sm:p-6">
+    <div className="container items-center mx-auto p-4 sm:p-6">
       <HeaderNav title={'Configurações'} currentUserName={formData.name} currentUserId={formData.id} />
       <div className="flex flex-col items-center">
         <div className="mb-6 text-center">
@@ -222,7 +222,7 @@ export const Configuracoes = () => {
               <button 
                 type="button" 
                 onClick={isEditing ? handleSaveClick : handleEditClick}
-                className={`px-4 py-2 ${isEditing ? 'bg-green hover:bg-green-600' : 'bg-blue hover:bg-blue-600'} text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
+                className={`px-4 py-2 ${isEditing ? 'bg-green hover:bg-[#007a63]' : 'bg-blue hover:bg-[#007a63]'} text-white rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
               >
                 {isEditing ? 'Salvar' : 'Editar'}
               </button>

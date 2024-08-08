@@ -115,8 +115,8 @@ export const CriarEmprestimo = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="container mx-auto p-4 sm:p-6">
-            <h1 className="text-2xl font-bold mb-6">Criar Empréstimo</h1>
+        <div className="container mx-auto p-4 sm:p-6 mt-10 md:w-96">
+            <h1 className="text-2xl font-bold mb-6 text-green text-center mt-4">Criar Empréstimo</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex items-center">
                     <input
@@ -218,7 +218,7 @@ export const CriarEmprestimo = () => {
                 <div className="flex justify-center mt-6">
                     <button
                         type="submit"
-                        className="px-4 py-2 bg-blue text-white rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                        className="px-4 py-2 bg-green text-white rounded-md shadow-sm hover:bg-blue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                     >
                         {contaPessoal ? 'Gerar QR Code' : 'Enviar'}
                     </button>

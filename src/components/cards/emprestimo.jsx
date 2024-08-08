@@ -5,11 +5,11 @@ export const CompanyCard = ({ company, onDoubleClick }) => {
 
     return (
         <div 
-            className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer"
+            className="max-w-sm mx-auto bg-[#80ed99] shadow-lg rounded-lg overflow-hidden cursor-pointer p-1"
             onDoubleClick={() => onDoubleClick(company)}
         >
             <div className="p-6">
-                <h2 className="text-xl font-bold mb-2 text-gray-900">{nomeEmpresa}</h2>
+                <h2 className="text-xl font-bold mb-2 text-blue">{nomeEmpresa}</h2>
                 <div className="flex items-center justify-between mb-4">
                     <div className="text-gray-700 text-sm">
                         <p className="font-medium">Montante:</p>
@@ -33,7 +33,7 @@ export const CompanyCard = ({ company, onDoubleClick }) => {
                     </div>
                 </div>
                 <div className="text-gray-700 text-sm">
-                    <p className="font-medium">Juris:</p>
+                    <p className="font-medium">Jurus:</p>
                     <p>{juris}</p>
                 </div>
             </div>
