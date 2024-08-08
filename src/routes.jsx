@@ -5,7 +5,7 @@ import {Disputa} from '../src/pages/disputa'
 import {Emprestimo} from '../src/pages/emprestimo'
 import {ErrorPage} from '../src/pages/error-page'
 import { ConfiguracoesPage} from '../src/pages/configuracoes'
-import {Empresas} from '../src/pages/empresas'
+import { EmpresasAll} from './pages/empresas-all'
 import { SignupPage } from "./pages/signup-page";
 import { Login } from "./components/login";
 import { ProtectedRoute } from "./components/protect-route";
@@ -15,6 +15,7 @@ import { SignupPageCredor } from "./pages/signup-page-credor";
 import { CriarEmprestimo } from "./components/emprestimo/criarEmprestimo";
 import { DetalhesEmprestimoDevedor } from "./components/emprestimo/detalhesEmprestimoDevedor";
 import { OfertasPage } from "./pages/ofertas-page";
+
 
 export const route = createBrowserRouter([
 
@@ -70,8 +71,8 @@ export const route = createBrowserRouter([
         ),
     },
     {
-        path:"/empresas",
-        element:<Empresas/>,
+        path:"/empresas-all",
+        element:<EmpresasAll/>,
     },
     {
         path:"/signup",
