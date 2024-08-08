@@ -63,13 +63,14 @@ export const EmprestimoCredor = () => {
                     to="/criar-emprestimo"
                     onClick={handleNewDividendRequest}
                     className="px-4 py-2 bg-green text-white font-semibold rounded-md hover:bg-blue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Solicitar Divida
+                    Responder Solicitacao
                 </Link>
-                <button
+                <Link
+                    to="/ofertas-page"
                     onClick={handleEmprestar}
                     className="px-4 py-2 bg-green text-white font-semibold rounded-md hover:bg-blue focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                    Emprestar
-                </button>
+                    Criar Oferta
+                </Link>
             </div>
 
             <div className="mb-6">

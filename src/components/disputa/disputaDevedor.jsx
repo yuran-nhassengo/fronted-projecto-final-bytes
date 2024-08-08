@@ -1,43 +1,50 @@
+import React from 'react';
 
-
-
-<<<<<<< HEAD
-const disputes = [
-  { id: 1, name: 'Disputa Número : 01' },
-  { id: 2, name: 'Disputa Número : 02' },
-  { id: 3, name: 'Disputa Número : 03' },
-  { id: 4, name: 'Disputa Número : 04' },
+const disputaCredor = [
+  { id: 1, nome: 'Credor 1', valor: 1000, status: 'Pendente' },
+  { id: 2, nome: 'Credor 2', valor: 2000, status: 'Resolvido' },
+  { id: 3, nome: 'Credor 3', valor: 1500, status: 'Pendente' },
 ];
 
-function DisputaDevedor() {
+const DisputaCredor = () => {
   return (
-    <>
-      <div className="app">
-        <header className="app-header">
-          <h1 className="text-2xl font-bold mb-6 text-center text-gray-900">Resolução de disputas</h1>
-        </header>
-        <div className="dispute-list space-y-4">
-          {disputes.map((dispute) => (
-            <div key={dispute.id} className="dispute-item p-4 bg-white rounded-lg shadow-md flex justify-between items-center">
-              <p className="text-gray-700">{dispute.name}</p>
-              <button className="resolve-button bg-blue-600 text-white font-bold py-2 px-4 rounded-md hover:bg-green transition duration-150 ease-in-out">
-                Resolver Disputa
-              </button>
-            </div>
-          ))}
-          <button className="archive-button w-full py-2 px-4 bg-green-600 text-white font-bold rounded-md hover:bg-green transition duration-150 ease-in-out">
-            Arquivar Disputa
-          </button>
+    <div style={styles.container}>
+      <h1 style={styles.title}>Disputas de Credores</h1>
+      {disputaCredor.map((credor) => (
+        <div key={credor.id} style={styles.box}>
+          <p style={styles.text}>Nome: {credor.nome}</p>
+          <p style={styles.text}>Valor: {credor.valor}</p>
+          <p style={styles.text}>Status: {credor.status}</p>
         </div>
-      </div>
-    </>
+      ))}
+    </div>
   );
-}
+};
 
-export default DisputaDevedor;
+const styles = {
+  container: {
+    padding: '20px',
+  },
+  title: {
+    fontSize: '24px',
+    marginBottom: '20px',
+  },
+  box: {
+    border: '1px solid #ccc',
+    padding: '10px',
+    marginBottom: '10px',
+    cursor: 'pointer',
+    borderRadius: '5px',
+    transition: 'background-color 0.3s ease',
+  },
+  text: {
+    margin: '5px 0',
+  },
+};
+
+export default DisputaCredor;
 
 
 
-=======
->>>>>>> rascunhof
+
 

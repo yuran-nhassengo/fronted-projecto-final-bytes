@@ -27,7 +27,7 @@ export const Navbar = () => {
                         Disputa
                     </Link>
                     <Link
-                        to="/empresas"
+                        to="/empresas-all"
                         className="text-white hover:text-blue px-3 py-2 rounded-md text-sm font-medium"
                     >
                         Empresas
