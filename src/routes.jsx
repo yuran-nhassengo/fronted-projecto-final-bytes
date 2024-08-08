@@ -14,6 +14,7 @@ import { LoginPage } from "./pages/login-page";
 import { SignupPageCredor } from "./pages/signup-page-credor";
 import { CriarEmprestimo } from "./components/emprestimo/criarEmprestimo";
 import { DetalhesEmprestimoDevedor } from "./components/emprestimo/detalhesEmprestimoDevedor";
+import { OfertasPage } from "./pages/ofertas-page";
 
 export const route = createBrowserRouter([
 
@@ -41,6 +42,14 @@ export const route = createBrowserRouter([
         element: (
             <ProtectedRoute>
                 <ConfiguracoesPage />
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path:"/ofertas-page",
+        element: (
+            <ProtectedRoute>
+                <OfertasPage />
             </ProtectedRoute>
         ),
     },
