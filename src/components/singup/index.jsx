@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import{ Link } from "react-router-dom";
 
 export const Signup = () => {
     const [step, setStep] = useState(1);
@@ -246,11 +247,11 @@ export const Signup = () => {
                                         required
                                         className="mr-2"
                                     />
-                                    <label htmlFor="aceitarTermos" className="text-gray-700 text-sm">Aceito os <a href="#" className="text-blue-600 hover:underline">termos e condições</a></label>
+                                    <label htmlFor="aceitarTermos" className="">Aceito os <Link to="/termosECondicoes" className="hover:underline text-blue">termos e condições</Link></label>                         
                                 </div>
                                 <button
                                     type="submit"
-                                    className="w-full py-2 px-4 bg-green text-white font-bold rounded-md hover:bg-blue-700 transition duration-150 ease-in-out"
+                                    className="w-full py-2 px-4 bg-green text-white font-bold rounded-md hover:bg-[#007a63] transition duration-150 ease-in-out"
                                 >
                                     Cadastrar
                                 </button>

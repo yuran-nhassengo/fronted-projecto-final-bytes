@@ -14,6 +14,7 @@ import { LoginPage } from "./pages/login-page";
 import { SignupPageCredor } from "./pages/signup-page-credor";
 import { CriarEmprestimo } from "./components/emprestimo/criarEmprestimo";
 import { DetalhesEmprestimoDevedor } from "./components/emprestimo/detalhesEmprestimoDevedor";
+import { Terms } from "./pages/termosECondicoes";
 import { OfertasPage } from "./pages/ofertas-page";
 
 
@@ -85,6 +86,10 @@ export const route = createBrowserRouter([
     {
         path:"/signup-page-credor",
         element:<SignupPageCredor/>,
+    },
+    {
+        path:"/termosECondicoes",
+        element:<Terms/>,
     },
 ])
 
