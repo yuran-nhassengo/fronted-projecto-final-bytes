@@ -8,6 +8,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
 
     const [detalhes, setDetalhes] = useState(null);
     const [formData, setFormData] = useState({});
+    const [originalStatus, setOriginalStatus] = useState('');
 
     useEffect(() => {
         const fetchDetalhes = async () => {
@@ -19,6 +20,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                 console.log("emprestimo", emprestimo);
                 setDetalhes(emprestimo.data);
                 setFormData(devedor.data);
+                setOriginalStatus(devedor.data.status || '');  // Armazena o status original
             } catch (error) {
                 console.error('Erro ao buscar detalhes:', error);
             }
@@ -37,8 +39,14 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
     const handleSave = async () => {
         try {
             console.log('Dados para salvar:', formData);
-            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/solicitacao/${company._id}`, formData);
+            // Inclua o status no corpo da requisição
+            const response = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/solicitacao/${company._id}`, {
+                ...formData,
+                status: formData.status  // Inclua o status no corpo da requisição
+            });
+            console.log('Resposta da API:', response.data);
             setDetalhes(prevDetalhes => ({ ...prevDetalhes, ...formData }));
+            setOriginalStatus(formData.status);  // Atualiza o status original
         } catch (error) {
             console.error('Erro ao salvar:', error);
         }
@@ -96,7 +104,13 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium text-gray">Status:</label>
+                        <label className="block text-sm font-medium text-gray">Status Anterior:</label>
+                        <p className="mt-1 text-sm text-gray-700">
+                            {originalStatus ? (originalStatus === 'aceite' ? 'Aceito' : originalStatus === 'rejeitado' ? 'Rejeitado' : 'Pendente') : 'Não definido'}
+                        </p>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray">Alterar Status:</label>
                         <select
                             name="status"
                             value={formData.status || ''}
@@ -104,6 +118,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                             className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
                         >
                             <option value="" disabled>Selecione...</option>
+                            <option value="pendente">Pendente</option>
                             <option value="aceite">Aceitar</option>
                             <option value="rejeitado">Rejeitar</option>
                         </select>
