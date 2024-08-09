@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'; 
 import { Credores } from '../components/cards/credores';
-import { Footer } from '../components/navBar';  
+import { Footer } from '../components/navBar'; 
+import { SearchComponent } from '../components/search';  
 
 export const EmpresasAll = () => {
     const [credorList, setCredorList] = useState([]);
@@ -30,8 +31,10 @@ export const EmpresasAll = () => {
 
     return (
         <div className="relative min-h-screen bg-gray-100">
+            <SearchComponent />
             <main className="pt-16 mt-8 pb-16">
-                <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <p className="font-bold text-2xl text-green text-center pt-2">Empresas</p>
+                <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
                     {credorList.map((credor, index) => (
                         <Credores key={index} company={credor} />
                     ))}
@@ -39,5 +42,5 @@ export const EmpresasAll = () => {
             </main>
             <Footer />
         </div>
-    );
+    ); 
 };

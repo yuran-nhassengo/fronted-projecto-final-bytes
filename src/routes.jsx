@@ -16,6 +16,8 @@ import { CriarEmprestimo } from "./components/emprestimo/criarEmprestimo";
 import { DetalhesEmprestimoDevedor } from "./components/emprestimo/detalhesEmprestimoDevedor";
 import { Terms } from "./pages/termosECondicoes";
 import { OfertasPage } from "./pages/ofertas-page";
+import { Admin } from "./pages/admin";
+
 
 
 export const route = createBrowserRouter([
@@ -90,6 +92,10 @@ export const route = createBrowserRouter([
     {
         path:"/termosECondicoes",
         element:<Terms/>,
+    },
+    {
+        path:"/admin",
+        element:<Admin/>,
     },
 ])
 
