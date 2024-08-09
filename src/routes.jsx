@@ -16,6 +16,7 @@ import { CriarEmprestimo } from "./components/emprestimo/criarEmprestimo";
 import { DetalhesEmprestimoDevedor } from "./components/emprestimo/detalhesEmprestimoDevedor";
 import { Terms } from "./pages/termosECondicoes";
 import { OfertasPage } from "./pages/ofertas-page";
+import { DetalhesEmprestimoCredor } from "./components/emprestimo/detalhesEmprestimoCredor";
 
 
 export const route = createBrowserRouter([
@@ -68,6 +69,14 @@ export const route = createBrowserRouter([
         element: (
             <ProtectedRoute>
                 <DetalhesEmprestimoDevedor/>
+            </ProtectedRoute>
+        ),
+    },
+    {
+        path:"/detalhes-emprestimo-credor/:id",
+        element: (
+            <ProtectedRoute>
+                <DetalhesEmprestimoCredor/>
             </ProtectedRoute>
         ),
     },

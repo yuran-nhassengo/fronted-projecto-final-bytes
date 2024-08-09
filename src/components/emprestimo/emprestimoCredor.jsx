@@ -52,8 +52,8 @@ export const EmprestimoCredor = () => {
         console.log('Emprestar');
     };
 
-    const handleCardDoubleClick = (emprestimo) => {
-        navigate(`/detalhes-emprestimo-devedor/${emprestimo._id}`); 
+    const handleCardDoubleClick = (company) => {
+        navigate(`/detalhes-emprestimo-credor/${company._id}`, { state: { company } }); 
     };
 
     return (
@@ -117,7 +117,7 @@ export const EmprestimoCredor = () => {
                             montante: `R$ ${emprestimo.valor.toFixed(2)}`,
                             dataEnvio: emprestimo.dataEnvio,
                             dataPagamento: emprestimo.dataDevolucao,
-                            status: 'Pendente',
+                            status: emprestimo.status,
                             juris: '0'
                         }}
                         onDoubleClick={handleCardDoubleClick} 
