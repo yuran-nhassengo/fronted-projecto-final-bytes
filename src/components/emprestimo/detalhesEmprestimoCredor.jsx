@@ -46,62 +46,25 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-                <h2 className="text-2xl font-semibold mb-4">Detalhes do Empréstimo</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-black">Detalhes do Empréstimo</h2>
                 {editando ? (
                     <div className="space-y-4">
                         <div>
-                            <label className="block text-sm font-medium text-gray-700">Nome do Devedor:</label>
-                            <input
-                                type="text"
-                                name="nomeDevedor"
-                                value={formData.nomeDevedor}
-                                onChange={handleChange}
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Motivo:</label>
-                            <input
-                                type="text"
-                                name="motivo"
-                                value={formData.motivo}
-                                onChange={handleChange}
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Valor:</label>
-                            <input
-                                type="number"
-                                name="valor"
-                                value={formData.valor}
-                                onChange={handleChange}
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Data de Devolução:</label>
-                            <input
-                                type="date"
-                                name="dataDevolucao"
-                                value={formData.dataDevolucao}
-                                onChange={handleChange}
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
-                        </div>
-                        <div>
-                            <label className="block text-sm font-medium text-gray-700">Status:</label>
-                            <input
-                                type="text"
+                            <label className="block text-sm font-medium text-gray">Status:</label>
+                            <select
                                 name="status"
                                 value={formData.status}
                                 onChange={handleChange}
-                                className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                            />
+                                className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
+                            >
+                                <option value="" disabled>Selecione...</option>
+                                <option value="Aceitar">Aceitar</option>
+                                <option value="Rejeitar">Rejeitar</option>
+                            </select>
                         </div>
                         <button
                             onClick={handleSave}
-                            className="px-4 py-2 bg-blue text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                            className="px-4 py-2 bg-blue text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2"
                         >
                             Salvar
                         </button>
@@ -115,7 +78,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                         <p><strong>Status:</strong> {detalhes.status}</p>
                         <button
                             onClick={() => setEditando(true)}
-                            className="px-4 py-2 bg-yellow text-white font-semibold rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+                            className="px-4 py-2 bg-yellow text-black font-semibold rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2"
                         >
                             Editar
                         </button>
@@ -124,7 +87,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                 <Link
                     to='/emprestimo'
                     onClick={onClose}
-                    className="mt-8 px-4 py-2 bg-gray text-white font-semibold rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+                    className="mt-8 px-4 py-2 bg-gray text-white font-semibold rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray focus:ring-offset-2"
                 >
                     Fechar
                 </Link>
