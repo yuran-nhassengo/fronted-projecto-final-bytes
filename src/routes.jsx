@@ -22,7 +22,6 @@ import { DetalhesEmprestimoCredor } from "./components/emprestimo/detalhesEmpres
 
 
 export const route = createBrowserRouter([
-
     {
         path:"/",
         element:<Home/>,

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Footer } from '../navBar';
+import { SearchComponent } from '../search';
 
 export const DetalhesEmprestimoDevedor = () => {
     const { id } = useParams();
@@ -70,9 +72,12 @@ export const DetalhesEmprestimoDevedor = () => {
 
     return (
         <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">Detalhes do Empréstimo</h1>
+            <SearchComponent />
+            
+            <div className="mt-60 bg-white shadow-md rounded-lg p-8 w-full md:w-4/5 lg:w-2/3 xl:w-1/2 mx-auto">
+                <h1 className="text-2xl font-bold mb-4 text-green">Detalhes do Empréstimo</h1>
 
-            {isEditing ? (
+                {isEditing ? (
                 <div>
                     <div className="mb-4">
                         <label className="block mb-2">Nome da Empresa:</label>
@@ -128,7 +133,7 @@ export const DetalhesEmprestimoDevedor = () => {
                         Salvar
                     </button>
                 </div>
-            ) : (
+                ) : (
                 <div>
                     <p><strong>Nome da Empresa:</strong> {empresaDetalhe.nomeEmpresa}</p>
                     <p><strong>Montante:</strong> R$ {emprestimo.valor.toFixed(2)}</p>
@@ -138,7 +143,7 @@ export const DetalhesEmprestimoDevedor = () => {
                     <p><strong>Jurís:</strong> {emprestimo.juris}</p>
                     <button
                         onClick={handleEditClick}
-                        className="px-4 py-2 bg-yellow text-white font-semibold rounded-md hover:bg-yellow mr-2"
+                        className="px-4 py-2 bg-yellow text-black font-semibold rounded-md hover:bg-yellow mr-2"
                     >
                         Editar
                     </button>
@@ -150,7 +155,9 @@ export const DetalhesEmprestimoDevedor = () => {
                         Fazer Pagamento
                     </button>
                 </div>
-            )}
+                )}
+            </div>
+            <Footer />
         </div>
     );
 };
