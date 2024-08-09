@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import QRCode from 'qrcode.react'; 
 import { Footer } from '../navBar';
+import { SearchComponent } from '../search';
+ 
 
 export const CriarEmprestimo = () => {
     const [empresa, setEmpresa] = useState('');
@@ -115,8 +117,10 @@ export const CriarEmprestimo = () => {
     if (error) return <p>{error}</p>;
 
     return (
-        <div className="container mx-auto p-4 sm:p-6 mt-10 md:w-96">
-            <h1 className="text-2xl font-bold mb-6 text-green text-center mt-4">Criar Empréstimo</h1>
+        <div className="container mx-auto p-2 mb-14 sm:p-6 mt-2 md:w-96 "> 
+        <SearchComponent />
+            <div className='bg-white mt-14 shadow-md rounded-lg p-8'> 
+            <h1 className="text-2xl font-bold mb-6 text-green text-center">Criar Empréstimo</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex items-center">
                     <input
@@ -231,7 +235,7 @@ export const CriarEmprestimo = () => {
                     <QRCode value={qrCodeValue} size={256} />
                 </div>
             )}
-
+        </div>
             <Footer />
         </div>
     );

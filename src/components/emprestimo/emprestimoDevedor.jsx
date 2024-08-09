@@ -53,7 +53,7 @@ export const EmprestimoDevedor = () => {
 
     return (
         <div className="p-4">
-            <div className="mb-6 flex space-x-4">
+            <div className="pl-14 mb-6 flex space-x-4">
                 <Link
                     to="/criar-emprestimo"
                     onClick={handleNewDividendRequest}
@@ -67,7 +67,7 @@ export const EmprestimoDevedor = () => {
                 </button>
             </div>
 
-            <div className="mb-6">
+            <div className="mb-6 pl-14">
                 <input
                     type="radio"
                     id="todos"

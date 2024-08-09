@@ -16,6 +16,9 @@ import { CriarEmprestimo } from "./components/emprestimo/criarEmprestimo";
 import { DetalhesEmprestimoDevedor } from "./components/emprestimo/detalhesEmprestimoDevedor";
 import { Terms } from "./pages/termosECondicoes";
 import { OfertasPage } from "./pages/ofertas-page";
+import { Admin } from "./pages/admin";
+import { DetalhesEmprestimoCredor } from "./components/emprestimo/detalhesEmprestimoCredor";
+
 
 
 export const route = createBrowserRouter([
@@ -24,13 +27,6 @@ export const route = createBrowserRouter([
         path:"/",
         element:<Home/>,
         errorElement:<ErrorPage/>,
-    },
-    {
-        path:"/disputa",
-        element:(
-            <ProtectedRoute>
-                <Disputa/>
-            </ProtectedRoute>),
     },
     {
         path:"/emprestimo",
@@ -72,6 +68,14 @@ export const route = createBrowserRouter([
         ),
     },
     {
+        path:"/detalhes-emprestimo-credor/:id",
+        element: (
+            <ProtectedRoute>
+                <DetalhesEmprestimoCredor/>
+            </ProtectedRoute>
+        ),
+    },
+    {
         path:"/empresas-all",
         element:<EmpresasAll/>,
     },
@@ -90,6 +94,10 @@ export const route = createBrowserRouter([
     {
         path:"/termosECondicoes",
         element:<Terms/>,
+    },
+    {
+        path:"/admin",
+        element:<Admin/>,
     },
 ])
 
