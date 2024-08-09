@@ -12,10 +12,13 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
     useEffect(() => {
         const fetchDetalhes = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores/emprestimo/${company._id}`);
-                const {_id} = response.data
-                setDetalhes(response.data);
-                setFormData(response.data);
+                console.log("id", company._id);
+                const devedor = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores/emprestimo/${company._id}`);
+                const emprestimo = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/emprestimo/${company._id}`);
+                console.log("devedor", devedor);
+                console.log("emprestimo", emprestimo);
+                setDetalhes(emprestimo.data);
+                setFormData(devedor.data);
             } catch (error) {
                 console.error('Erro ao buscar detalhes:', error);
             }
@@ -27,13 +30,15 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
     }, [company]);
 
     const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setFormData(prevData => ({ ...prevData, [name]: value }));
     };
 
     const handleSave = async () => {
         try {
-            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/solicitacao/${_id}`, formData);
-            setDetalhes(formData);
+            console.log('Dados para salvar:', formData);
+            await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/solicitacao/${company._id}`, formData);
+            setDetalhes(prevDetalhes => ({ ...prevDetalhes, ...formData }));
         } catch (error) {
             console.error('Erro ao salvar:', error);
         }
