@@ -106,7 +106,8 @@ export const Configuracoes = () => {
   return (
     <div className="container items-center mx-auto p-4 sm:p-6">
       <HeaderNav title={'Configurações'} currentUserName={formData.name} currentUserId={formData.id} />
-      <div className="flex flex-col items-center">
+      <div className="shadow-2xl rounded-lg">
+      <div className="flex flex-col items-center p-5">
         <div className="mb-6 text-center">
           <img 
             src={profilePic} 
@@ -124,7 +125,7 @@ export const Configuracoes = () => {
         <div className="w-full max-w-md">
           <form className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-gray">
                 Nome
               </label>
               <input 
@@ -134,7 +135,7 @@ export const Configuracoes = () => {
                 value={formData.name} 
                 onChange={handleChange}
                 disabled={!isEditing} 
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-green focus:border-green sm:text-sm"
                 placeholder="Seu nome"
               />
             </div>
@@ -150,7 +151,7 @@ export const Configuracoes = () => {
                 value={formData.bilhete} 
                 onChange={handleChange}
                 disabled={!isEditing}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                 placeholder="Seu bilhete"
               />
             </div>
@@ -166,7 +167,7 @@ export const Configuracoes = () => {
                 value={formData.genero} 
                 onChange={handleChange}
                 disabled={!isEditing}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                 placeholder="Seu gênero"
               />
             </div>
@@ -182,7 +183,7 @@ export const Configuracoes = () => {
                 value={formData.nascimento} 
                 onChange={handleChange}
                 disabled={!isEditing}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
               />
             </div>
 
@@ -197,7 +198,7 @@ export const Configuracoes = () => {
                 value={formData.endereco} 
                 onChange={handleChange}
                 disabled={!isEditing}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                 placeholder="Seu endereço"
               />
             </div>
@@ -213,7 +214,7 @@ export const Configuracoes = () => {
                 value={formData.email} 
                 onChange={handleChange}
                 disabled={!isEditing}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                 placeholder="Seu email"
               />
             </div>
@@ -229,6 +230,7 @@ export const Configuracoes = () => {
             </div>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

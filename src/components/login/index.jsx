@@ -51,7 +51,7 @@ export const Login = () => {
                     <form onSubmit={handleSubmit} className="space-y-4">
                         {error && <p className="text-red-500 text-center">{error}</p>}
                         <div>
-                            <label htmlFor="email" className="block text-gray-700 text-sm font-medium mb-1">E-mail</label>
+                            <label htmlFor="email" className="block text-gray text-sm font-medium mb-1">E-mail</label>
                             <input
                                 type="email"
                                 id="email"
@@ -59,11 +59,11 @@ export const Login = () => {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                className="w-full p-2 border border-gray-300 rounded-md"
+                                className="w-full p-2 border border-gray rounded-md"
                             />
                         </div>
                         <div>
-                            <label htmlFor="senha" className="block text-gray-700 text-sm font-medium mb-1">Senha</label>
+                            <label htmlFor="senha" className="block text-gray text-sm font-medium mb-1">Senha</label>
                             <input
                                 type="password"
                                 id="senha"
@@ -71,7 +71,7 @@ export const Login = () => {
                                 value={senha}
                                 onChange={(e) => setSenha(e.target.value)}
                                 required
-                                className="w-full p-2 border border-gray-300 rounded-md"
+                                className="w-full p-2 border border-gray rounded-md"
                             />
                         </div>
                         <button

@@ -119,7 +119,7 @@ export const CriarEmprestimo = () => {
     return (
         <div className="container mx-auto p-2 mb-14 sm:p-6 mt-2 md:w-96 "> 
         <SearchComponent />
-            <div className='bg-white mt-14 shadow-md rounded-lg p-8'> 
+            <div className='bg-white mt-28 shadow-2xl rounded-lg p-8'> 
             <h1 className="text-2xl font-bold mb-6 text-green text-center">Criar Empréstimo</h1>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div className="flex items-center">
@@ -159,7 +159,7 @@ export const CriarEmprestimo = () => {
                             name="empresa"
                             value={empresa}
                             onChange={(e) => setEmpresa(e.target.value)}
-                            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                            className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                         >
                             <option value="">Selecione uma empresa</option>
                             {credores.length > 0 ? (
@@ -185,7 +185,7 @@ export const CriarEmprestimo = () => {
                         value={motivo}
                         onChange={(e) => setMotivo(e.target.value)}
                         rows="4"
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                         placeholder="Descreva o motivo do empréstimo"
                     />
                 </div>
@@ -200,7 +200,7 @@ export const CriarEmprestimo = () => {
                         name="dataDevolucao"
                         value={dataDevolucao}
                         onChange={(e) => setDataDevolucao(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                     />
                 </div>
 
@@ -214,7 +214,7 @@ export const CriarEmprestimo = () => {
                         name="valor"
                         value={valor}
                         onChange={(e) => setValor(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                        className="mt-1 block w-full px-3 py-2 border border-gray rounded-md shadow-sm focus:outline-none focus:ring-blue focus:border-green sm:text-sm"
                         placeholder="Insira o valor"
                     />
                 </div>

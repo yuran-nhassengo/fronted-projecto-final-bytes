@@ -74,7 +74,7 @@ export const DetalhesEmprestimoDevedor = () => {
         <div className="p-4">
             <SearchComponent />
             
-            <div className="mt-60 bg-white shadow-md rounded-lg p-8 w-full md:w-4/5 lg:w-2/3 xl:w-1/2 mx-auto">
+            <div className="mt-36 bg-white shadow-md rounded-lg p-8 w-full md:w-4/5 lg:w-2/3 xl:w-1/2 mx-auto">
                 <h1 className="text-2xl font-bold mb-4 text-green">Detalhes do Empréstimo</h1>
 
                 {isEditing ? (
@@ -128,7 +128,7 @@ export const DetalhesEmprestimoDevedor = () => {
                     </div>
                     <button
                         onClick={handleSaveClick}
-                        className="px-4 py-2 bg-blue text-white font-semibold rounded-md hover:bg-blue-600"
+                        className="px-4 py-2 bg-blue text-white font-semibold rounded-md hover:bg-green"
                     >
                         Salvar
                     </button>
@@ -140,17 +140,17 @@ export const DetalhesEmprestimoDevedor = () => {
                     <p><strong>Data de Envio:</strong> {emprestimo.criadoEm}</p>
                     <p><strong>Data de Devolução:</strong> {emprestimo.dataDevolucao}</p>
                     <p><strong>Status:</strong> {emprestimo.status}</p>
-                    <p><strong>Jurís:</strong> {emprestimo.juris}</p>
+                    <p><strong>Jurís:</strong> {emprestimo.juris}</p>                     
                     <button
                         onClick={handleEditClick}
-                        className="px-4 py-2 bg-yellow text-black font-semibold rounded-md hover:bg-yellow mr-2"
+                        className="px-4 py-2 bg-yellow text-black font-semibold rounded-md hover:bg-green hover:text-white mr-2"
                     >
                         Editar
                     </button>
                     <button
                         onClick={handlePayment}
                         disabled={!isPaymentEnabled}
-                        className={`px-4 py-2 font-semibold rounded-md ${isPaymentEnabled ? 'bg-green hover:bg-gray' : 'bg-gray-500 cursor-not-allowed'}`}
+                        className={`px-4 py-2 font-semibold rounded-md ${isPaymentEnabled ? 'bg-blue hover:bg-green hover:text-white' : 'bg-gray cursor-not-allowed'}`}
                     >
                         Fazer Pagamento
                     </button>

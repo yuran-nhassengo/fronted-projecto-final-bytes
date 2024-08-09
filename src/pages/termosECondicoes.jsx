@@ -68,12 +68,14 @@ export const Terms = () => {
           Se você tiver dúvidas sobre estes Termos e Condições, entre em contato conosco através do e-mail [seuemail@dominio.com] ou pelo endereço [Seu Endereço].
         </div>
         <div className="p-1 rounded-lg mb-12 bg-gray-50 text-justify">
+          <Link to="/">
         <button
           type="submit"
           className="w-full py-2 px-4 bg-green text-white font-bold rounded-md hover:bg-[#007a63] transition duration-150 ease-in-out"
           >
-            Aceitar
+            Voltar para a Home
         </button>
+        </Link>
         </div>
       </main>
     <Footer/>

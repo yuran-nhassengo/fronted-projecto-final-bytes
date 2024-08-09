@@ -38,9 +38,9 @@ export const Emprestimo = () => {
   return (
     <div className="flex flex-col mb-20">   
       <SearchComponent />
-      <main className="flex-grow mt-16">
+      <main className="flex-grow mt-20">
         <p className="font-bold text-2xl text-green text-center pt-5">Empréstimos</p>
-        <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="bg-white min-h-screen flex mt-5 justify-center">
           <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
             {isCredor ? <EmprestimoCredor /> : <EmprestimoDevedor />}
           </div>

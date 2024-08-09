@@ -57,7 +57,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
             <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
-                <h2 className="text-2xl font-semibold mb-4 text-black">Detalhes do Empréstimo</h2>
+                <h2 className="text-2xl font-semibold mb-4 text-green">Detalhes do Empréstimo</h2>
                 <div className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray">Nome do Devedor:</label>
@@ -66,7 +66,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                             name="nomeDevedor"
                             value={formData.nomeDevedor || ''}
                             onChange={handleChange}
-                            className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
+                            className="mt-1 p-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
                             disabled
                         />
                     </div>
@@ -77,7 +77,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                             name="motivo"
                             value={formData.motivo || ''}
                             onChange={handleChange}
-                            className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
+                            className="mt-1 p-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
                             disabled
                         />
                     </div>
@@ -88,7 +88,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                             name="valor"
                             value={`R$ ${formData.valor?.toFixed(2) || ''}`}
                             onChange={handleChange}
-                            className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
+                            className="mt-1 p-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
                             disabled
                         />
                     </div>
@@ -99,7 +99,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                             name="dataDevolucao"
                             value={formData.dataDevolucao || ''}
                             onChange={handleChange}
-                            className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
+                            className="mt-1 p-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
                             disabled
                         />
                     </div>
@@ -115,7 +115,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                             name="status"
                             value={formData.status || ''}
                             onChange={handleChange}
-                            className="mt-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
+                            className="mt-1 p-1 block w-full border border-gray rounded-md shadow-sm focus:ring-blue focus:border-blue sm:text-sm"
                         >
                             <option value="" disabled>Selecione...</option>
                             <option value="pendente">Pendente</option>
@@ -125,7 +125,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                     </div>
                     <button
                         onClick={handleSave}
-                        className="px-4 py-2 bg-blue text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2"
+                        className=" px-4 py-2 pt- bg-blue text-white font-semibold rounded-md hover:bg-green focus:outline-none focus:ring-2 focus:ring-blue focus:ring-offset-2"
                     >
                         Salvar
                     </button>
@@ -133,7 +133,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                 <Link
                     to='/emprestimo'
                     onClick={onClose}
-                    className="mt-8 px-4 py-2 bg-gray text-white font-semibold rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray focus:ring-offset-2"
+                    className="mt-8 px-4 py-2 bg-gray text-white font-semibold rounded-md hover:bg-green focus:outline-none focus:ring-2 focus:ring-gray focus:ring-offset-2"
                 >
                     Fechar
                 </Link>
