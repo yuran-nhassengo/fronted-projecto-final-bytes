@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 export const EmprestimoDevedor = () => {
     const [emprestimos, setEmprestimos] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState('todos');
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEmprestimos = async () => {
@@ -16,10 +16,10 @@ export const EmprestimoDevedor = () => {
                 return;
             }
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/emprestimos`,{
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/emprestimos`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
-                      }
+                    }
                 });
                 console.log(response.data);
                 setEmprestimos(response.data);
@@ -35,8 +35,8 @@ export const EmprestimoDevedor = () => {
         setSelectedFilter(event.target.value);
     };
 
-    const filteredEmprestimos = emprestimos.filter(emprestimo =>
-        selectedFilter === 'todos' || emprestimo.usuario === 'meu-usuario' || emprestimo.usuario === 'por-pagar'
+    const filteredEmprestimos = emprestimos.filter(emprestimo => 
+        selectedFilter === 'todos' || emprestimo.status === selectedFilter
     );
 
     const handleNewDividendRequest = () => {
@@ -48,7 +48,7 @@ export const EmprestimoDevedor = () => {
     };
 
     const handleCardDoubleClick = (emprestimo) => {
-        navigate(`/detalhes-emprestimo-devedor/${emprestimo._id}`); 
+        navigate(`/detalhes-emprestimo-devedor/${emprestimo._id}`);
     };
 
     return (
@@ -80,25 +80,36 @@ export const EmprestimoDevedor = () => {
 
                 <input
                     type="radio"
-                    id="meus-emprestimos"
+                    id="aceite"
                     name="filter"
-                    value="meus-emprestimos"
-                    checked={selectedFilter === 'meus-emprestimos'}
+                    value="aceite"
+                    checked={selectedFilter === 'aceite'}
                     onChange={handleFilterChange}
                     className="ml-4"
                 />
-                <label htmlFor="meus-emprestimos" className="ml-2">Meus Empréstimos</label>
+                <label htmlFor="aceite" className="ml-2">Aceites</label>
 
                 <input
                     type="radio"
-                    id="por-pagar"
+                    id="pendente"
                     name="filter"
-                    value="por-pagar"
-                    checked={selectedFilter === 'por-pagar'}
+                    value="pendente"
+                    checked={selectedFilter === 'pendente'}
                     onChange={handleFilterChange}
                     className="ml-4"
                 />
-                <label htmlFor="por-pagar" className="ml-2">Por Pagar</label>
+                <label htmlFor="pendente" className="ml-2">Pendentes</label>
+
+                <input
+                    type="radio"
+                    id="rejeitado"
+                    name="filter"
+                    value="rejeitado"
+                    checked={selectedFilter === 'rejeitado'}
+                    onChange={handleFilterChange}
+                    className="ml-4"
+                />
+                <label htmlFor="rejeitado" className="ml-2">Rejeitados</label>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -111,10 +122,10 @@ export const EmprestimoDevedor = () => {
                             montante: `R$ ${emprestimo.valor.toFixed(2)}`,
                             dataEnvio: emprestimo.dataEnvio,
                             dataPagamento: emprestimo.dataDevolucao,
-                            status: 'Pendente',
-                            juris: 'Jurídico A'
+                            status: emprestimo.status,
+                            juris: '0'
                         }}
-                        onDoubleClick={handleCardDoubleClick} 
+                        onDoubleClick={() => handleCardDoubleClick(emprestimo)} 
                     />
                 ))}
             </div>
