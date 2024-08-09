@@ -3,30 +3,28 @@ import axios from 'axios';
 import { CompanyCard } from '../cards/emprestimo';
 import { Link, useNavigate } from 'react-router-dom';
 
-export const EmprestimoCredor = () => {
 
+export const EmprestimoCredor = () => {
     const [emprestimos, setEmprestimos] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState('todos');
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchEmprestimos = async () => {
             const token = localStorage.getItem('token');
 
-            
             if (!token) {
                 console.error('Token não encontrado');
                 return;
             }
-            console.log('1111')
+
             try {
-                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores/emprestimo`,{
+                const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores/emprestimo`, {
                     headers: {
                         'Authorization': `Bearer ${token}`
-                      }
+                    }
                 });
-                console.log('22222')
-                console.log(response.data);
+                console.log('Dados recebidos:', response.data); 
                 setEmprestimos(response.data);
             } catch (error) {
                 console.error('Erro ao buscar empréstimos:', error);
@@ -40,9 +38,18 @@ export const EmprestimoCredor = () => {
         setSelectedFilter(event.target.value);
     };
 
-    const filteredEmprestimos = emprestimos.filter(emprestimo =>
-        selectedFilter === 'todos' || emprestimo.usuario === 'meu-usuario' || emprestimo.usuario === 'por-pagar'
-    );
+    const filteredEmprestimos = emprestimos.filter(emprestimo => {
+        switch (selectedFilter) {
+            case 'todos':
+                return true;
+            case 'aceite':
+                return emprestimo.status === 'aceite';
+            case 'pendente':
+                return emprestimo.status === 'pendente';
+            default:
+                return false;
+        }
+    });
 
     const handleNewDividendRequest = () => {
         console.log('Solicitar novo dividendo');
@@ -52,8 +59,8 @@ export const EmprestimoCredor = () => {
         console.log('Emprestar');
     };
 
-    const handleCardDoubleClick = (emprestimo) => {
-        navigate(`/detalhes-emprestimo-devedor/${emprestimo._id}`); 
+    const handleCardDoubleClick = (company) => {
+        navigate(`/detalhes-emprestimo-credor/${company._id}`, { state: { company } });
     };
 
     return (
@@ -88,7 +95,7 @@ export const EmprestimoCredor = () => {
                     type="radio"
                     id="meus-emprestimos"
                     name="filter"
-                    value="meus-emprestimos"
+                    value="aceite"
                     checked={selectedFilter === 'aceite'}
                     onChange={handleFilterChange}
                     className="ml-4"
@@ -99,8 +106,8 @@ export const EmprestimoCredor = () => {
                     type="radio"
                     id="por-pagar"
                     name="filter"
-                    value="por-pagar"
-                    checked={selectedFilter === 'pendentes'}
+                    value="pendente"
+                    checked={selectedFilter === 'pendente'}
                     onChange={handleFilterChange}
                     className="ml-4"
                 />
@@ -108,21 +115,25 @@ export const EmprestimoCredor = () => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredEmprestimos.map(emprestimo => (
-                    <CompanyCard
-                        key={emprestimo._id}
-                        company={{
-                            _id: emprestimo._id, 
-                            nomeEmpresa: emprestimo.nomeDevedor,
-                            montante: `R$ ${emprestimo.valor.toFixed(2)}`,
-                            dataEnvio: emprestimo.dataEnvio,
-                            dataPagamento: emprestimo.dataDevolucao,
-                            status: 'Pendente',
-                            juris: '0'
-                        }}
-                        onDoubleClick={handleCardDoubleClick} 
-                    />
-                ))}
+                {filteredEmprestimos.length > 0 ? (
+                    filteredEmprestimos.map(emprestimo => (
+                        <CompanyCard
+                            key={emprestimo._id}
+                            company={{
+                                _id: emprestimo._id,
+                                nomeEmpresa: emprestimo.nomeDevedor,
+                                montante: `${emprestimo.valor.toFixed(2)} MZN`,
+                                dataEnvio: emprestimo.dataEnvio,
+                                dataPagamento: emprestimo.criadoEm,
+                                status: emprestimo.status,
+                                juris: '0'
+                            }}
+                            onDoubleClick={handleCardDoubleClick}
+                        />
+                    ))
+                ) : (
+                    <p>Nenhum empréstimo encontrado.</p>
+                )}
             </div>
         </div>
     );
