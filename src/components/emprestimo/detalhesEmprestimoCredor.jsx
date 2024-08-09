@@ -20,7 +20,7 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
                 console.log("emprestimo", emprestimo);
                 setDetalhes(emprestimo.data);
                 setFormData(devedor.data);
-                setOriginalStatus(devedor.data.status || '');  // Armazena o status original
+                setOriginalStatus(devedor.data.status || '');  
             } catch (error) {
                 console.error('Erro ao buscar detalhes:', error);
             }
@@ -39,14 +39,14 @@ export const DetalhesEmprestimoCredor = ({ onClose }) => {
     const handleSave = async () => {
         try {
             console.log('Dados para salvar:', formData);
-            // Inclua o status no corpo da requisição
+           
             const response = await axios.put(`${import.meta.env.VITE_API_BASE_URL}/api/solicitacao/${company._id}`, {
                 ...formData,
-                status: formData.status  // Inclua o status no corpo da requisição
+                status: formData.status  
             });
             console.log('Resposta da API:', response.data);
             setDetalhes(prevDetalhes => ({ ...prevDetalhes, ...formData }));
-            setOriginalStatus(formData.status);  // Atualiza o status original
+            setOriginalStatus(formData.status);  
         } catch (error) {
             console.error('Erro ao salvar:', error);
         }
