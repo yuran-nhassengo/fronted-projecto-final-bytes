@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import {Home} from '../src/pages/home'
-//import {Disputa} from '../src/pages/disputa'
+import {Disputa} from '../src/pages/disputa'
 import {Emprestimo} from '../src/pages/emprestimo'
 import {ErrorPage} from '../src/pages/error-page'
 import { ConfiguracoesPage} from '../src/pages/configuracoes'
@@ -25,13 +25,13 @@ export const route = createBrowserRouter([
         element:<Home/>,
         errorElement:<ErrorPage/>,
     },
-    // {
-    //     path:"/disputa",
-    //     element:(
-    //         <ProtectedRoute>
-    //             <Disputa/>
-    //         </ProtectedRoute>),
-    // },
+    {
+        path:"/disputa",
+        element:(
+            <ProtectedRoute>
+                <Disputa/>
+            </ProtectedRoute>),
+    },
     {
         path:"/emprestimo",
         element:(
