@@ -15,6 +15,7 @@ export const Home = () => {
         const fetchOfertas = async () => {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_API_BASE_URL}/api/credores/oferta`);
+                console.log('Dados recebidos:', response.data); 
                 setOfertas(response.data);
                 setFilteredOfertas(response.data);
                 setLoading(false);
@@ -29,11 +30,11 @@ export const Home = () => {
     }, []); 
 
     useEffect(() => {
-       
+        console.log('Termo de Pesquisa:', searchTerm); 
         if (searchTerm) {
             setFilteredOfertas(
-                ofertas.filter((oferta) =>
-                    oferta.name.toLowerCase().includes(searchTerm.toLowerCase())
+                ofertas.filter((oferta) => 
+                    oferta.nome && oferta.nome.toLowerCase().includes(searchTerm.toLowerCase())
                 )
             );
         } else {
@@ -42,6 +43,7 @@ export const Home = () => {
     }, [searchTerm, ofertas]);
 
     const handleSearchChange = (event) => {
+        console.log('Mudança na Pesquisa:', event.target.value); 
         setSearchTerm(event.target.value);
     };
 

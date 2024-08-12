@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Footer } from '../components/navBar';
-import { Configuracoes } from '../components/configuracoes';
-import { ConfiguracoesCredor } from '../components/configuracoes/configuracoesCredor';
-import { useAuth } from '../contexts/AuthContext';
 import { SearchComponent } from '../components/search'; 
 import { EmprestimoDevedor } from '../components/emprestimo/emprestimoDevedor';
 import { EmprestimoCredor } from '../components/emprestimo/emprestimoCredor';
-
+import { useAuth } from '../contexts/AuthContext';
 
 export const Emprestimo = () => {
   const { user } = useAuth(); 
+  const [searchTerm, setSearchTerm] = useState('');
 
- 
   const isCredor = user && user.tipo === 'credor'; 
-
   const isDevedor = user && user.tipo === 'devedor'; 
-
-
   const isUnknownType = !isCredor && !isDevedor;
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
 
   if (isUnknownType) {
     return (
@@ -34,15 +32,16 @@ export const Emprestimo = () => {
     );
   }
 
-
   return (
     <div className="flex flex-col mb-20">   
-      <SearchComponent />
+      <SearchComponent searchTerm={searchTerm} onSearchChange={handleSearchChange} />
       <main className="flex-grow mt-20">
         <p className="font-bold text-2xl text-green text-center pt-5">Empréstimos</p>
         <div className="bg-white min-h-screen flex mt-5 justify-center">
           <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-            {isCredor ? <EmprestimoCredor /> : <EmprestimoDevedor />}
+            {isCredor ? 
+              <EmprestimoCredor searchTerm={searchTerm} /> : 
+              <EmprestimoDevedor searchTerm={searchTerm} />}
           </div>
         </div>
       </main>
@@ -50,4 +49,3 @@ export const Emprestimo = () => {
     </div>
   );
 };
-

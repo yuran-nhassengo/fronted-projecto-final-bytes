@@ -3,8 +3,7 @@ import axios from 'axios';
 import { CompanyCard } from '../cards/emprestimo';
 import { Link, useNavigate } from 'react-router-dom';
 
-
-export const EmprestimoCredor = () => {
+export const EmprestimoCredor = ({ searchTerm }) => {
     const [emprestimos, setEmprestimos] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState('todos');
     const navigate = useNavigate();
@@ -39,25 +38,21 @@ export const EmprestimoCredor = () => {
     };
 
     const filteredEmprestimos = emprestimos.filter(emprestimo => {
-        switch (selectedFilter) {
-            case 'todos':
-                return true;
-            case 'aceite':
-                return emprestimo.status === 'aceite';
-            case 'pendente':
-                return emprestimo.status === 'pendente';
-            default:
-                return false;
-        }
+        const nomeDevedor = emprestimo.nomeDevedor || '';
+        const nomeEmpresa = emprestimo.nomeEmpresa || '';
+        const lowerCaseSearchTerm = searchTerm ? searchTerm.toLowerCase() : '';
+
+       
+        const statusFilter = selectedFilter === 'todos' ||
+                             (selectedFilter === 'aceite' && emprestimo.status === 'aceite') ||
+                             (selectedFilter === 'pendente' && emprestimo.status === 'pendente');
+                             
+       
+        const searchFilter = nomeDevedor.toLowerCase().includes(lowerCaseSearchTerm) ||
+                             nomeEmpresa.toLowerCase().includes(lowerCaseSearchTerm);
+
+        return statusFilter && searchFilter;
     });
-
-    const handleNewDividendRequest = () => {
-        console.log('Solicitar novo dividendo');
-    };
-
-    const handleEmprestar = () => {
-        console.log('Emprestar');
-    };
 
     const handleCardDoubleClick = (company) => {
         navigate(`/detalhes-emprestimo-credor/${company._id}`, { state: { company } });
@@ -68,13 +63,11 @@ export const EmprestimoCredor = () => {
             <div className="mb-6 flex space-x-4">
                 <Link
                     to="/criar-emprestimo"
-                    onClick={handleNewDividendRequest}
                     className="px-4 py-2 bg-green text-white font-semibold rounded-md hover:bg-blue focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                    Responder Solicitacao
+                    Responder Solicitação
                 </Link>
                 <Link
                     to="/ofertas-page"
-                    onClick={handleEmprestar}
                     className="px-4 py-2 bg-green text-white font-semibold rounded-md hover:bg-blue focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
                     Criar Oferta
                 </Link>
@@ -93,25 +86,25 @@ export const EmprestimoCredor = () => {
 
                 <input
                     type="radio"
-                    id="meus-emprestimos"
+                    id="aceites"
                     name="filter"
                     value="aceite"
                     checked={selectedFilter === 'aceite'}
                     onChange={handleFilterChange}
                     className="ml-4"
                 />
-                <label htmlFor="meus-emprestimos" className="ml-2">Aceites</label>
+                <label htmlFor="aceites" className="ml-2">Aceites</label>
 
                 <input
                     type="radio"
-                    id="por-pagar"
+                    id="pendentes"
                     name="filter"
                     value="pendente"
                     checked={selectedFilter === 'pendente'}
                     onChange={handleFilterChange}
                     className="ml-4"
                 />
-                <label htmlFor="por-pagar" className="ml-2">Pendentes</label>
+                <label htmlFor="pendentes" className="ml-2">Pendentes</label>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -128,7 +121,7 @@ export const EmprestimoCredor = () => {
                                 status: emprestimo.status,
                                 juris: '0'
                             }}
-                            onDoubleClick={handleCardDoubleClick}
+                            onDoubleClick={() => handleCardDoubleClick(emprestimo)}
                         />
                     ))
                 ) : (

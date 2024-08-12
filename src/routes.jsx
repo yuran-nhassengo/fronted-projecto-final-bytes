@@ -43,6 +43,14 @@ export const route = createBrowserRouter([
         ),
     },
     {
+        path:"/disputa",
+        element: (
+            <ProtectedRoute>
+                <Disputa />
+            </ProtectedRoute>
+        ),
+    },
+    {
         path:"/ofertas-page",
         element: (
             <ProtectedRoute>
@@ -96,7 +104,12 @@ export const route = createBrowserRouter([
     },
     {
         path:"/admin",
-        element:<Admin/>,
+
+        element:(
+            <ProtectedRoute>
+                    <Admin/>
+        </ProtectedRoute>
+        ),
     },
 ])
 
